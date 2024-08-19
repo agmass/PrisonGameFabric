@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.agmas.prisongamefabric.mapgame.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FilledMapMixin",
+    "InputMixin",
+    "ItemFrameMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

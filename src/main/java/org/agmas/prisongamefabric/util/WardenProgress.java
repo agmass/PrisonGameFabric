@@ -1,0 +1,63 @@
+package org.agmas.prisongamefabric.util;
+
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.SubtitleS2CPacket;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.function.CommandFunction;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import org.agmas.prisongamefabric.PrisonGameFabric;
+import org.agmas.prisongamefabric.prisons.PrisonZone;
+import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
+import org.agmas.prisongamefabric.util.Roles.Role;
+
+import java.util.ArrayList;
+import java.util.UUID;
+
+public class WardenProgress {
+    public double funds = 0.0;
+    public ArrayList<PrisonUpgrade> upgrades = new ArrayList<>();
+    public UUID gameEndingWarden=null;
+    public String wardenName="No-one";
+
+    public WardenProgress() {}
+
+    public WardenProgress(PlayerEntity p) {
+        gameEndingWarden = p.getUuid();
+        wardenName = p.getName().getLiteralString();
+        p.getServer().getPlayerManager().getPlayerList().forEach((serverPlayerEntity -> {
+            serverPlayerEntity.networkHandler.sendPacket(new TitleS2CPacket(Tx.tf(Formatting.RED,p.getName().getLiteralString())));
+            serverPlayerEntity.networkHandler.sendPacket(new SubtitleS2CPacket(Tx.tf(Formatting.GREEN, "is the new warden!")));
+            serverPlayerEntity.playSoundToPlayer(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1, 1);
+            if (p.getUuid().equals(serverPlayerEntity.getUuid())) return;
+            Profile profile = Profile.getProfile(serverPlayerEntity);
+            if (profile.role.power.powerful) {
+                profile.setRole(Role.PRISONER);
+            }
+        }));
+        Profile profile = Profile.getProfile(p);
+        profile.setRole(Role.WARDEN);
+        PrisonGameFabric.active.upgrades.forEach((u)->{
+            MinecraftServer s = PrisonGameFabric.serverInstance;
+            CommandFunction<ServerCommandSource> function = s.getCommandFunctionManager().getFunction(u.functionOnLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
+            s.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
+            function = s.getCommandFunctionManager().getFunction(PrisonGameFabric.availablePrisonUpgrades.get(u.upgrade).globalLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
+            s.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
+            if (u.safeZone.isPresent()) {
+                PrisonZone zone = u.safeZone.get();
+                s.getPlayerManager().getPlayerList().forEach((pl)->{
+                    Profile profile2 = Profile.getProfile(pl);
+                    if (zone.isInside(pl)) {
+                        profile2.teleportToSpawn();
+                    }
+                });
+            }
+        });
+    }
+}

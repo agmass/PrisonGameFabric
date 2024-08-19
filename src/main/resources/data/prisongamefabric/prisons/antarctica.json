@@ -1,0 +1,88 @@
+{
+  "name": "Antarctic Penitentiary",
+  "itemIcon": "minecraft:iron_sword",
+  "upgrades": [
+    {
+      "upgrade": "prisongamefabric:foodcourt",
+      "onLock": "prisongamefabric:ant_cafe_lock",
+      "onUnlock": "prisongamefabric:ant_cafe_unlock",
+      "safeZone": {
+        "zoneStart": {
+          "x": -43,
+          "y": 22,
+          "z": 62
+        },
+        "zoneEnd": {
+          "x": -29,
+          "y": 15,
+          "z": 76
+        }
+      }
+    },
+    {
+      "upgrade": "example:helloworld"
+    }
+  ],
+  "cellLocations": [
+    {
+      "x": -16.5,
+      "y":16,
+      "z": 79.5,
+      "yaw": -180,
+      "pitch": 0
+    },
+    {
+      "x": -12.5,
+      "y":16,
+      "z": 79.5,
+      "yaw": -180,
+      "pitch": 0
+    },
+    {
+      "x": -7.5,
+      "y":16,
+      "z": 79.5,
+      "yaw": -180,
+      "pitch": 0
+    },
+    {
+      "x": -2.5,
+      "y":16,
+      "z": 79.5,
+      "yaw": -180,
+      "pitch": 0
+    },
+
+    {
+      "x": -16.5,
+      "y":16,
+      "z": 69.5,
+      "yaw": 0,
+      "pitch": 0
+    },
+    {
+      "x": -12.5,
+      "y":16,
+      "z": 69.5,
+      "yaw": 0,
+      "pitch": 0
+    },
+    {
+      "x": -7.5,
+      "y":16,
+      "z": 69.5,
+      "yaw": 0,
+      "pitch": 0
+    },
+    {
+      "x": -2.5,
+      "y":16,
+      "z": 69.5,
+      "yaw": 0,
+      "pitch": 0
+    }
+  ],
+  "wardenSpawn": { "x": -17.5, "y": 35, "z": 140, "yaw": 180 },
+  "guardSpawn": { "x": 5, "y": 21, "z": 120 },
+  "computerTeleport": { "x": -12.5, "y": 35, "z": 155.5, "yaw": -90 }
+}
