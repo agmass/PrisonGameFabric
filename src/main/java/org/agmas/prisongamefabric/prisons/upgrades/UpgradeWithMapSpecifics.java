@@ -52,6 +52,7 @@ public class UpgradeWithMapSpecifics {
         PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
         PrisonUpgrade up = PrisonGameFabric.availablePrisonUpgrades.get(upgrade);
         up.specialUnlockBehaviour();
+        PrisonGameFabric.progress.upgrades.add(up);
         if (global) {
             function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(up.globalUnlock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
             PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
