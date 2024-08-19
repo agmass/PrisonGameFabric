@@ -6,6 +6,7 @@
   "mixins": [
     "GamemodeMixin",
     "PlayerListTick",
+    "PrisonTick",
     "ServerPlayNetworkHandlerMixin",
     "StructureBlockMixin",
     "players.HidePlayerList",

@@ -52,6 +52,12 @@ public class Commands {
                     return Commands.pluginsMessage(context.getSource());
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("mods").executes(
+                (context)->{
+                    context.getSource().sendError(Text.of("No, fabric doesn't have /mods either."));
+                    return 1;
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setrole")
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("role", RoleArgumentType.role()).executes(context -> {

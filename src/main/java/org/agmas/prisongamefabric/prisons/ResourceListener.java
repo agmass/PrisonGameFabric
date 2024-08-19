@@ -25,11 +25,13 @@ import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
 import org.agmas.prisongamefabric.PrisonGameFabric;
+import org.agmas.prisongamefabric.prisons.upgrades.UpgradeWithMapSpecifics;
 import org.slf4j.Logger;
 
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class ResourceListener extends JsonDataLoader implements IdentifiableResourceReloadListener {
@@ -51,6 +53,7 @@ public class ResourceListener extends JsonDataLoader implements IdentifiableReso
 
                 Prison prison = result.resultOrPartial(LOGGER::error).orElseThrow();
                 Log.info(LogCategory.GENERAL,"Added prison: " + prison.getName());
+                prison.upgrades.add(new UpgradeWithMapSpecifics(Identifier.of("prisongamefabric", "swat"), Optional.empty(), Optional.empty(), Optional.empty()));
                 PrisonGameFabric.availablePrisons.add(prison);
             } catch (Exception exception) {
                 Log.error(LogCategory.GENERAL,exception.getMessage());

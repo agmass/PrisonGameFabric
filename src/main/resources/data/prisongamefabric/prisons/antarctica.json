@@ -81,5 +81,6 @@
   ],
   "wardenSpawn": { "x": -17.5, "y": 35, "z": 140, "yaw": 180 },
   "guardSpawn": { "x": 5, "y": 21, "z": 120 },
-  "computerTeleport": { "x": -12.5, "y": 35, "z": 155.5, "yaw": -90 }
+  "computerTeleport": { "x": -12.5, "y": 35, "z": 155.5, "yaw": -90 },
+  "onTick": ["prisongamefabric:rain"]
 }

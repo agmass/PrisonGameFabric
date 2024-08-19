@@ -31,7 +31,6 @@ public class UpgradeWithMapSpecifics {
         this.functionOnUnlock = functionOnUnlock;
         this.safeZone = safeZone;
     }
-
     public Identifier getUpgrade() {
         return upgrade;
     }
@@ -51,8 +50,9 @@ public class UpgradeWithMapSpecifics {
     public void unlock(boolean global) {
         CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(functionOnUnlock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
         PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
+        PrisonUpgrade up = PrisonGameFabric.availablePrisonUpgrades.get(upgrade);
+        up.specialUnlockBehaviour();
         if (global) {
-            PrisonUpgrade up = PrisonGameFabric.availablePrisonUpgrades.get(upgrade);
             function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(up.globalUnlock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
             PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
         }
@@ -61,8 +61,9 @@ public class UpgradeWithMapSpecifics {
     public void lock(boolean global) {
         CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(functionOnLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
         PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
+        PrisonUpgrade up = PrisonGameFabric.availablePrisonUpgrades.get(upgrade);
+        up.specialLockBehaviour();
         if (global) {
-            PrisonUpgrade up = PrisonGameFabric.availablePrisonUpgrades.get(upgrade);
             function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(up.globalLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
             PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
         }

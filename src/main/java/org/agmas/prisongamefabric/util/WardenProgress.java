@@ -13,6 +13,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.agmas.prisongamefabric.PrisonGameFabric;
+import org.agmas.prisongamefabric.prisons.Prison;
 import org.agmas.prisongamefabric.prisons.PrisonZone;
 import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
 import org.agmas.prisongamefabric.util.Roles.Role;

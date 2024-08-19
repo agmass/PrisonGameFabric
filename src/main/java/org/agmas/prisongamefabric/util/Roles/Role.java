@@ -8,11 +8,12 @@ import org.agmas.prisongamefabric.util.Tx;
 import java.util.ArrayList;
 
 public enum Role {
-    OUTOFGAME("OutOfGame", Formatting.GRAY, Formatting.BLUE, PositionInPower.PRISONLESS, Items.empty (), Armor.empty()),
-    PRISONER("Prisoner", Formatting.GOLD, Formatting.GRAY, PositionInPower.PRISONER, Items.empty(), Armor.prisoner()),
-    GUARD("Guard", Formatting.BLUE, Formatting.WHITE, PositionInPower.GUARD, Items.guard(), Armor.guard()),
-    NURSE("Nurse", Formatting.LIGHT_PURPLE, Formatting.WHITE, PositionInPower.GUARD, Items.nurse(), Armor.nurse()),
-    WARDEN("Warden", Formatting.RED, Formatting.WHITE, PositionInPower.WARDEN, Items.warden(), Armor.warden());
+    OUTOFGAME("OutOfGame", Formatting.GRAY, Formatting.BLUE, PositionInPower.PRISONLESS, KitItems.empty (), Armor.empty()),
+    PRISONER("Prisoner", Formatting.GOLD, Formatting.GRAY, PositionInPower.PRISONER, KitItems.empty(), Armor.prisoner()),
+    GUARD("Guard", Formatting.BLUE, Formatting.WHITE, PositionInPower.GUARD, KitItems.guard(), Armor.guard()),
+    NURSE("Nurse", Formatting.LIGHT_PURPLE, Formatting.WHITE, PositionInPower.GUARD, KitItems.nurse(), Armor.nurse()),
+    SWAT("Swat", Formatting.DARK_GRAY, Formatting.WHITE, PositionInPower.GUARD, KitItems.swat(), Armor.swat()),
+    WARDEN("Warden", Formatting.RED, Formatting.WHITE, PositionInPower.WARDEN, KitItems.warden(), Armor.warden());
 
     public final String name;
     public final Formatting color;

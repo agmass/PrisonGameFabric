@@ -48,16 +48,14 @@ import org.agmas.prisongamefabric.prisons.shopSigns.ShopsListener;
 import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
 import org.agmas.prisongamefabric.prisons.upgrades.UpgradeWithMapSpecifics;
 import org.agmas.prisongamefabric.prisons.upgrades.UpgradesListener;
+import org.agmas.prisongamefabric.prisons.upgrades.hardUpgrades.SwatUpgrade;
 import org.agmas.prisongamefabric.util.Profile;
 import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.Schedule;
 import org.agmas.prisongamefabric.util.Tx;
 import org.agmas.prisongamefabric.util.WardenProgress;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -87,6 +85,8 @@ public class PrisonGameFabric implements ModInitializer {
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ResourceListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new UpgradesListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ShopsListener());
+
+
 
         PrisonGameBlocks.initalize();
         PrisonGameBlocks.itemsInitalize();
@@ -141,6 +141,7 @@ public class PrisonGameFabric implements ModInitializer {
         wardens.remove(p);
         handleDisconnectedWarden();
     }
+
 
     private ServerCommandSource pbfCommandSource() {
         return new ServerCommandSource(CommandOutput.DUMMY, serverInstance.getCommandSource().getPosition(), serverInstance.getCommandSource().getRotation(), serverInstance.getCommandSource().getWorld(), 2, "PBF Command Source", Text.of("PrisonButFabric"), serverInstance, serverInstance.getCommandSource().getEntity());

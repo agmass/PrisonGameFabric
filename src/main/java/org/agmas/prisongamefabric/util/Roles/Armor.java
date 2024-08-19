@@ -51,6 +51,16 @@ public class Armor {
         nurseArmor.add(leatherLeggings);
         return nurseArmor;
     }
+    public static ArrayList<ItemStack> swat() {
+        ArrayList<ItemStack> swatArmor = new ArrayList<>();
+        swatArmor.add(Items.NETHERITE_HELMET.getDefaultStack());
+        swatArmor.add(Items.NETHERITE_CHESTPLATE.getDefaultStack());
+        swatArmor.add(Items.IRON_LEGGINGS.getDefaultStack());
+        ItemStack leatherBoots = Items.LEATHER_BOOTS.getDefaultStack();
+        leatherBoots.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(0x1D1C1C , false));
+        swatArmor.add(leatherBoots);
+        return swatArmor;
+    }
     public static ArrayList<ItemStack> warden() {
         ArrayList<ItemStack> wardenArmor = new ArrayList<>();
         wardenArmor.add(Items.DIAMOND_HELMET.getDefaultStack());

@@ -61,4 +61,7 @@ public class PrisonUpgrade {
     public Optional<Identifier> getGlobalUnlock() {
         return globalUnlock;
     }
+
+    public void specialUnlockBehaviour() {}
+    public void specialLockBehaviour() {}
 }

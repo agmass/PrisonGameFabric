@@ -19,6 +19,7 @@ import net.minecraft.util.profiler.Profiler;
 import org.agmas.prisongamefabric.PrisonGameFabric;
 import org.agmas.prisongamefabric.block.UpgradeLockedBlock;
 import org.agmas.prisongamefabric.prisons.Prison;
+import org.agmas.prisongamefabric.prisons.upgrades.hardUpgrades.SwatUpgrade;
 import org.slf4j.Logger;
 
 import java.util.Collection;
@@ -36,6 +37,8 @@ public class UpgradesListener extends JsonDataLoader implements IdentifiableReso
     protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
         Log.info(LogCategory.GENERAL,"Loading " + prepared.size() + " Upgrades");
         PrisonGameFabric.availablePrisonUpgrades.clear();
+        // Hard Coded Upgrades
+        PrisonGameFabric.availablePrisonUpgrades.put(Identifier.of("prisongamefabric", "swat"), new SwatUpgrade());
         prepared.forEach((id, json)->{
             try {
 
