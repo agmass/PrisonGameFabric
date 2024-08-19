@@ -16,6 +16,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.agmas.prisongamefabric.PrisonGameFabric;
@@ -23,6 +24,8 @@ import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.mapgame.Sprite;
 import org.agmas.prisongamefabric.prisons.PrisonLocation;
 import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Roles.Role;
+import org.agmas.prisongamefabric.util.Tx;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,6 +35,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.text.Format;
 import java.util.Collections;
 import java.util.Set;
 
@@ -56,13 +60,17 @@ public abstract class ItemFrameMixin {
             }
             if (getHeldItemStack().getName().equals(Text.of("Computer"))) {
                 Profile p = Profile.getProfile(spe);
-                p.scene.justAttacked = true;
-                if (!p.isInScene) {
-                    if (!spe.getInventory().armor.get(3).getItem().equals(Items.FILLED_MAP)) {
-                        p.helmetItem = spe.getInventory().getArmorStack(3).copy();
+                if (p.role.equals(Role.WARDEN)) {
+                    p.scene.justAttacked = true;
+                    if (!p.isInScene) {
+                        if (!spe.getInventory().armor.get(3).getItem().equals(Items.FILLED_MAP)) {
+                            p.helmetItem = spe.getInventory().getArmorStack(3).copy();
 
-                        spe.getInventory().armor.set(3, getHeldItemStack());
+                            spe.getInventory().armor.set(3, getHeldItemStack());
+                        }
                     }
+                } else {
+                    player.sendMessage(Tx.tf(Formatting.RED, "ummm nuh uh youre not the warden you cant do that"));
                 }
                 cir.setReturnValue(ActionResult.FAIL);
                 cir.cancel();
@@ -82,11 +90,15 @@ public abstract class ItemFrameMixin {
             if (getHeldItemStack().getName().equals(Text.of("Computer"))) {
                 Profile p = Profile.getProfile(spe);
                 p.scene.justAttacked = true;
-                if (!p.isInScene) {
-                    if (!spe.getInventory().armor.get(3).getItem().equals(Items.FILLED_MAP)) {
-                        p.helmetItem = spe.getInventory().getArmorStack(3).copy();
-                        spe.getInventory().armor.set(3, getHeldItemStack());
+                if (p.role.equals(Role.WARDEN)) {
+                    if (!p.isInScene) {
+                        if (!spe.getInventory().armor.get(3).getItem().equals(Items.FILLED_MAP)) {
+                            p.helmetItem = spe.getInventory().getArmorStack(3).copy();
+                            spe.getInventory().armor.set(3, getHeldItemStack());
+                        }
                     }
+                } else {
+                    spe.sendMessage(Tx.tf(Formatting.RED, "ummm nuh uh youre not the warden you cant do that"));
                 }
                 cir.setReturnValue(false);
                 cir.cancel();
