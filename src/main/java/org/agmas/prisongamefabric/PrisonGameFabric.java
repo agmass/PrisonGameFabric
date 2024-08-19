@@ -43,6 +43,8 @@ import org.agmas.prisongamefabric.commands.Commands;
 import org.agmas.prisongamefabric.items.Keycard;
 import org.agmas.prisongamefabric.prisons.Prison;
 import org.agmas.prisongamefabric.prisons.ResourceListener;
+import org.agmas.prisongamefabric.prisons.shopSigns.ShopSign;
+import org.agmas.prisongamefabric.prisons.shopSigns.ShopsListener;
 import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
 import org.agmas.prisongamefabric.prisons.upgrades.UpgradeWithMapSpecifics;
 import org.agmas.prisongamefabric.prisons.upgrades.UpgradesListener;
@@ -64,6 +66,7 @@ public class PrisonGameFabric implements ModInitializer {
     public static HashMap<UUID, Profile> PlayerProfiles= new HashMap<>();
     public static ArrayList<Prison> availablePrisons = new ArrayList<>();
     public static HashMap<Identifier, PrisonUpgrade> availablePrisonUpgrades = new HashMap<>();
+    public static HashMap<Identifier, ShopSign> availableSigns = new HashMap<>();
     public static Prison active = null;
     public static ArrayList<PlayerEntity> wardens = new ArrayList<>();
     public static String humanReadableWardenList;
@@ -83,6 +86,7 @@ public class PrisonGameFabric implements ModInitializer {
 
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ResourceListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new UpgradesListener());
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ShopsListener());
 
         PrisonGameBlocks.initalize();
         PrisonGameBlocks.itemsInitalize();

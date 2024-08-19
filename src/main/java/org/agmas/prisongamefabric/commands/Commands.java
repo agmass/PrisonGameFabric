@@ -10,6 +10,7 @@ import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.command.suggestion.SuggestionProviders;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
 import net.minecraft.network.packet.s2c.play.OpenWrittenBookS2CPacket;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -41,6 +42,16 @@ public class Commands {
             }
             return 0;
         })));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("plugins").executes(
+                (context)->{
+                    return Commands.pluginsMessage(context.getSource());
+                }
+        )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("pl").executes(
+                (context)->{
+                    return Commands.pluginsMessage(context.getSource());
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setrole")
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("role", RoleArgumentType.role()).executes(context -> {
@@ -55,5 +66,10 @@ public class Commands {
         ArgumentTypeRegistry.registerArgumentType(
                 Identifier.of("minecraft", "role"),
                 RoleArgumentType.class, ConstantArgumentSerializer.of(RoleArgumentType::role));
+    }
+
+    public static int pluginsMessage(ServerCommandSource source) {
+        source.sendError(Text.of("Hehe, caught your ass snooping >:3\nWe don't use plugins on PrisonButFabric! because.. it's a fabric server.\n\nThe entire mod is available on https://github.com/agmass/prisongamefabric and contains most, if not all of the server's contents."));
+        return 1;
     }
 }

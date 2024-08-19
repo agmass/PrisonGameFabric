@@ -18,8 +18,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
+import org.agmas.prisongamefabric.PrisonGameFabric;
 import org.agmas.prisongamefabric.block.RegenerativeBlock;
 import org.agmas.prisongamefabric.items.jobItems.MiningItem;
+import org.agmas.prisongamefabric.prisons.shopSigns.ShopSign;
+import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.StateSaverAndLoader;
 import org.agmas.prisongamefabric.util.jobs.MiningJob;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -74,12 +78,24 @@ public abstract class ServerPlayerInteractionManagerMixin {
                  BlockEntity be = world.getBlockEntity(blockPos);
                  if (be instanceof SignBlockEntity signBlockEntity) {
                      for (MiningJob j : MiningJob.values()) {
-                         if (signBlockEntity.getFrontText().getMessage(2, false).contains(Text.of(j.name))) {
+                         if (signBlockEntity.getFrontText().getMessage(2, false).equals(Text.of(j.name))) {
                              if (!player.getInventory().contains(j.jobItem.getDefaultStack())) {
                                  ItemStack lumberAxe = j.jobItem.getDefaultStack();
                                  player.sendMessage(j.hint);
                                  player.getInventory().insertStack(lumberAxe);
                                  break;
+                             }
+                         }
+                     }
+                     for (ShopSign ss : PrisonGameFabric.availableSigns.values()) {
+                         if (signBlockEntity.getFrontText().getMessage(2, false).equals(Text.of(ss.name))) {
+                             Profile profile = Profile.getProfile(player);
+                             StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(player);
+                             if (pd.money >= ss.price) {
+                                 pd.money -= ss.price;
+                                 ss.buy(player);
+                             } else {
+                                 ss.attemptButFail(player);
                              }
                          }
                      }
