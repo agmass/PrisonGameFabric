@@ -18,9 +18,6 @@
           "z": 76
         }
       }
-    },
-    {
-      "upgrade": "example:helloworld"
     }
   ],
   "cellLocations": [

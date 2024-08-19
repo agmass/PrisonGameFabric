@@ -138,14 +138,6 @@ public class PrisonGameFabric implements ModInitializer {
         handleDisconnectedWarden();
     }
 
-    public static void runUnlock(UpgradeWithMapSpecifics upgrade, MinecraftServer s) {
-        PrisonUpgrade pupgrade = PrisonGameFabric.availablePrisonUpgrades.get(upgrade.upgrade);
-        CommandFunction<ServerCommandSource> function = s.getCommandFunctionManager().getFunction(upgrade.functionOnUnlock.orElse(Identifier.of("prisongamefabric","nothing"))).orElse(null);
-        s.getCommandFunctionManager().execute(function, commandSource);
-        function = s.getCommandFunctionManager().getFunction(pupgrade.globalUnlock.orElse(Identifier.of("prisongamefabric","nothing"))).orElse(null);
-        s.getCommandFunctionManager().execute(function, commandSource);
-    }
-
     private ServerCommandSource pbfCommandSource() {
         return new ServerCommandSource(CommandOutput.DUMMY, serverInstance.getCommandSource().getPosition(), serverInstance.getCommandSource().getRotation(), serverInstance.getCommandSource().getWorld(), 2, "PBF Command Source", Text.of("PrisonButFabric"), serverInstance, serverInstance.getCommandSource().getEntity());
     }
@@ -154,11 +146,9 @@ public class PrisonGameFabric implements ModInitializer {
         PrisonGameFabric.active = active;
         active.upgrades.forEach((u)->{
             if (!progress.upgrades.contains(availablePrisonUpgrades.get(u.upgrade))) {
-                CommandFunction<ServerCommandSource> function = s.getCommandFunctionManager().getFunction(u.functionOnLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
-                s.getCommandFunctionManager().execute(function, commandSource);
+                u.lock(false);
             } else {
-                CommandFunction<ServerCommandSource> function = s.getCommandFunctionManager().getFunction(u.functionOnUnlock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
-                s.getCommandFunctionManager().execute(function, commandSource);
+                u.unlock(false);
             }
         });
     }

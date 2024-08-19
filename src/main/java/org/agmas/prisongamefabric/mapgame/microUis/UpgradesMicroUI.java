@@ -33,7 +33,7 @@ public class UpgradesMicroUI extends MicroUi {
             });
             upgradeRepresenter.set(DataComponentTypes.LORE, new LoreComponent(new ArrayList<>(),finalD));
             this.slot(loop.get(), upgradeRepresenter, (player, slotIndex, button, actionType)->{
-                PrisonGameFabric.runUnlock(a, player.getServer());
+                a.unlock(true);
             });
             loop.getAndIncrement();
         });

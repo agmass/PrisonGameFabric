@@ -44,14 +44,10 @@ public class WardenProgress {
         Profile profile = Profile.getProfile(p);
         profile.setRole(Role.WARDEN);
         PrisonGameFabric.active.upgrades.forEach((u)->{
-            MinecraftServer s = PrisonGameFabric.serverInstance;
-            CommandFunction<ServerCommandSource> function = s.getCommandFunctionManager().getFunction(u.functionOnLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
-            s.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
-            function = s.getCommandFunctionManager().getFunction(PrisonGameFabric.availablePrisonUpgrades.get(u.upgrade).globalLock.orElse(Identifier.of("prisongamefabric", "nothing"))).orElse(null);
-            s.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);
+            u.lock(true);
             if (u.safeZone.isPresent()) {
                 PrisonZone zone = u.safeZone.get();
-                s.getPlayerManager().getPlayerList().forEach((pl)->{
+                PrisonGameFabric.serverInstance.getPlayerManager().getPlayerList().forEach((pl)->{
                     Profile profile2 = Profile.getProfile(pl);
                     if (zone.isInside(pl)) {
                         profile2.teleportToSpawn();
