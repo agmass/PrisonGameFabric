@@ -8,7 +8,6 @@
     "PlayerListTick",
     "PrisonTick",
     "ServerPlayNetworkHandlerMixin",
-    "StructureBlockMixin",
     "players.HidePlayerList",
     "players.PlayerDeath",
     "players.PlayerDrop",

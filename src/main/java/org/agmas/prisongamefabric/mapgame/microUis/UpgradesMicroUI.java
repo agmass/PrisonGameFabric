@@ -31,6 +31,7 @@ public class UpgradesMicroUI extends MicroUi {
             desc.forEach((s)->{
                 finalD.add(Tx.tf(Formatting.RESET,s));
             });
+            finalD.add(Tx.tf(Formatting.GRAY, "Price: ").append(Tx.tf(Formatting.GREEN, upgrade.price + "$")));
             upgradeRepresenter.set(DataComponentTypes.LORE, new LoreComponent(new ArrayList<>(),finalD));
             this.slot(loop.get(), upgradeRepresenter, (player, slotIndex, button, actionType)->{
                 a.unlock(true);

@@ -39,7 +39,7 @@ public class ShopsListener extends JsonDataLoader implements IdentifiableResourc
 
                 DataResult<ShopSign> result = ShopSign.CODEC.parse(JsonOps.INSTANCE, json);
                 PrisonGameFabric.availableSigns.put(id, result.getOrThrow());
-                Log.info(LogCategory.GENERAL,"Added Shop Sign " + result.getOrThrow());
+                Log.info(LogCategory.GENERAL,"Added Shop Sign " + result.getOrThrow().name);
             } catch (Exception exception) {
                 Log.error(LogCategory.GENERAL,exception.getMessage());
             }

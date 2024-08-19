@@ -15,6 +15,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.agmas.prisongamefabric.util.Profile;
 import org.agmas.prisongamefabric.util.StateSaverAndLoader;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,8 +37,8 @@ public class LumberjackAxe extends Item implements PolymerItem, MiningItem {
     @Override
     public void onMine(PlayerEntity p, BlockState b, World w, BlockPos pos) {
 
-        StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(p);
-        pd.money += 6;
+        Profile profile = Profile.getProfile(p);
+        profile.setMoney(profile.getMoney()+6);
         MiningItem.super.onMine(p,b,w,pos);
     }
 

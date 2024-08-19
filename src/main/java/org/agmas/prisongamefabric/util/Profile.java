@@ -89,6 +89,32 @@ public class Profile {
         teleportToSpawn();
 
     }
+
+
+    public void setMoney(double money) {
+        if (role.power== Role.PositionInPower.WARDEN) {
+            PrisonGameFabric.progress.funds = money;
+        } else {
+            StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(player);
+            pd.money = money;
+        }
+    }
+    public Formatting getMoneyColor() {
+        if (role.power== Role.PositionInPower.WARDEN) {
+            return Formatting.RED;
+        } else {
+            return Formatting.GREEN;
+        }
+    }
+
+    public double getMoney() {
+        if (role.power== Role.PositionInPower.WARDEN) {
+            return PrisonGameFabric.progress.funds;
+        } else {
+            StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(player);
+            return pd.money;
+        }
+    }
     public static Profile getProfile(PlayerEntity p) {
         return PrisonGameFabric.PlayerProfiles.get(p.getUuid());
     }

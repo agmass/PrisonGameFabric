@@ -44,7 +44,7 @@ public class UpgradesListener extends JsonDataLoader implements IdentifiableReso
 
                 DataResult<PrisonUpgrade> result = PrisonUpgrade.CODEC.parse(JsonOps.INSTANCE, json);
                 PrisonGameFabric.availablePrisonUpgrades.put(id, result.getOrThrow());
-                Log.info(LogCategory.GENERAL,"Added Upgrade " + result.getOrThrow());
+                Log.info(LogCategory.GENERAL,"Added Upgrade " + result.getOrThrow().name);
             } catch (Exception exception) {
                 Log.error(LogCategory.GENERAL,exception.getMessage());
             }

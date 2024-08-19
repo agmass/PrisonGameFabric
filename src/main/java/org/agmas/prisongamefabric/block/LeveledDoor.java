@@ -1,6 +1,8 @@
 package org.agmas.prisongamefabric.block;
 
 import eu.pb4.polymer.core.api.block.PolymerBlock;
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -21,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.agmas.prisongamefabric.items.Keycard;
 import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Schedule;
 import org.jetbrains.annotations.Nullable;
 
 public class LeveledDoor extends DoorBlock implements PolymerBlock {
@@ -34,17 +37,36 @@ public class LeveledDoor extends DoorBlock implements PolymerBlock {
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (level == 0) {
+        if (level == 0 && !Schedule.getCurrentPeriod().specialProperties.contains("lockdown")) {
             state = (BlockState) state.cycle(OPEN);
             world.setBlockState(pos, state, 10);
             playOpenCloseSound(player, world, pos, (Boolean) state.get(OPEN));
             world.emitGameEvent(player, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-        Profile.useFeedback(player, Profile.PlayerFeedbackEnum.ACCEPTED);
+            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.ACCEPTED);
             return ActionResult.success(true);
-        } else {
+        } else if (level != 0){
+
             Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, "Level " + level + " keycard required.");
+        } else {
+
+            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, "You cannot open doors in lockdown.");
         }
         return ActionResult.PASS;
+    }
+
+    @Override
+    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        world.scheduleBlockTick(pos, this, 1);
+        super.onBlockAdded(state, world, pos, oldState, notify);
+    }
+
+    @Override
+    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        world.scheduleBlockTick(pos, this, 1);
+        if (Schedule.getCurrentPeriod().specialProperties.contains("lockdown") && level == 0) {
+            world.setBlockState(pos, state.with(OPEN, false));
+        }
+        super.scheduledTick(state, world, pos, random);
     }
 
     private void playOpenCloseSound(@Nullable Entity entity, World world, BlockPos pos, boolean open) {

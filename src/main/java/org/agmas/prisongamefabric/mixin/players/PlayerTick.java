@@ -104,9 +104,8 @@ public abstract class PlayerTick {
                 networkHandler.sendPacket(BossBarS2CPacket.add(Schedule.scheduleBar));
             }
 
-            StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState((ServerPlayerEntity) thisplayer);
             if (profile.actionBarInvasion <= 0) {
-                sendMessage(Tx.tf(Formatting.GREEN, "$" + pd.money).append(Tx.tf(Formatting.GRAY, " | ").append(Tx.tf(Formatting.DARK_GRAY, "Current Warden: ").append(Tx.tf(Formatting.RED, PrisonGameFabric.humanReadableWardenList)))), true);
+                sendMessage(Tx.tf(profile.getMoneyColor(), "$" + profile.getMoney()).append(Tx.tf(Formatting.GRAY, " | ").append(Tx.tf(Formatting.DARK_GRAY, "Current Warden: ").append(Tx.tf(Formatting.RED, PrisonGameFabric.humanReadableWardenList)))), true);
             } else {
                 profile.actionBarInvasion--;
             }

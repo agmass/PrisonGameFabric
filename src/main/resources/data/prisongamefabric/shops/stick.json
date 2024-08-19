@@ -1,0 +1,6 @@
+{
+  "name": "Supreme Stick",
+  "price": 50,
+  "purchase": "prisongamefabric:stick",
+  "fail": "prisongamefabric:nothing"
+}

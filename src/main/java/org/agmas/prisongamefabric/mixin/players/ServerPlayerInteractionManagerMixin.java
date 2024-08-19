@@ -88,11 +88,10 @@ public abstract class ServerPlayerInteractionManagerMixin {
                          }
                      }
                      for (ShopSign ss : PrisonGameFabric.availableSigns.values()) {
-                         if (signBlockEntity.getFrontText().getMessage(2, false).equals(Text.of(ss.name))) {
+                         if (signBlockEntity.getFrontText().getMessage(2, false).getLiteralString().equals(ss.name)) {
                              Profile profile = Profile.getProfile(player);
-                             StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(player);
-                             if (pd.money >= ss.price) {
-                                 pd.money -= ss.price;
+                             if (profile.getMoney() >= ss.price) {
+                                 profile.setMoney(profile.getMoney()-ss.price);
                                  ss.buy(player);
                              } else {
                                  ss.attemptButFail(player);

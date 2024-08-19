@@ -44,6 +44,7 @@ public class WardenProgress {
         }));
         Profile profile = Profile.getProfile(p);
         profile.setRole(Role.WARDEN);
+        p.sendMessage(Tx.tf(Formatting.GREEN, "----------------\nYou are the new warden!\nuse /warden help to see how it works!\n----------------"));
         PrisonGameFabric.active.upgrades.forEach((u)->{
             u.lock(true);
             if (u.safeZone.isPresent()) {

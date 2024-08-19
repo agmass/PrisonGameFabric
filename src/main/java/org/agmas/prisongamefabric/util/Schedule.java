@@ -22,7 +22,9 @@ public class Schedule {
         entries.add(new ScheduleEntry(140, "Job Time", 4000, 11000, true));
         entries.add(new ScheduleEntry(60, "Evening Roll Call", 11000, 13000, true));
         entries.add(new ScheduleEntry(60, "Cell Time", 13000, 14000, true));
-        entries.add(new ScheduleEntry(80, "Lockdown", 14000, 23999, true));
+        ScheduleEntry lockDown = new ScheduleEntry(80, "Lockdown", 14000, 23999, true);
+        lockDown.specialProperties.add("lockdown");
+        entries.add(lockDown);
 
     }
 
@@ -48,6 +50,7 @@ public class Schedule {
             public int worldStartTime = 0;
             public int worldEndTime = 0;
             boolean resetDay = false;
+            public ArrayList<String> specialProperties = new ArrayList<>();
 
             public ScheduleEntry(int duration, String name, int start, int end, boolean inSeconds) {
                 this.duration = duration * (inSeconds ? 20 : 1);
