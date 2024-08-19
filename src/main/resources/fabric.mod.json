@@ -3,8 +3,8 @@
   "id": "prisongamefabric",
   "version": "${version}",
   "name": "prisongamefabric",
-  "description": "",
-  "authors": [],
+  "description": "A remake of PrisonButBad made in fabric.",
+  "authors": ["agmass"],
   "contact": {
     "repo": "https://github.com/agmass/prisongamefabric"
   },
