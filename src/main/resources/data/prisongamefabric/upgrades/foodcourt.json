@@ -1,6 +1,5 @@
 {
-  "name": "Food Court",
-  "description": "Unlocks the food court along with the\nCooking job and new Food Items.",
+  "name": "foodcourt",
   "itemIcon": "minecraft:iron_sword",
   "price": 200
 }

@@ -92,7 +92,7 @@ public abstract class PlayerTick {
             if (profile.respawnTime > 0) {
                 profile.respawnTime -= 1;
                 changeGameMode(GameMode.SPECTATOR);
-                playerSpecificBar.setName(Tx.tf(Formatting.RED, "Respawning in " + profile.respawnTime/20));
+                playerSpecificBar.setName(Tx.ttf(Formatting.RED, Text.translatable("respawn.message", profile.respawnTime/20)));
                 playerSpecificBar.setColor(BossBar.Color.RED);
                 playerSpecificBar.setPercent(Math.clamp((float) profile.respawnTime/(float)profile.maxRespawnTime, 0, 1));
                 networkHandler.sendPacket(BossBarS2CPacket.remove(Schedule.scheduleBar.getUuid()));
@@ -108,7 +108,11 @@ public abstract class PlayerTick {
             }
 
             if (profile.actionBarInvasion <= 0) {
-                sendMessage(Tx.tf(profile.getMoneyColor(), "$" + profile.getMoney()).append(Tx.tf(Formatting.GRAY, " | ").append(Tx.tf(Formatting.DARK_GRAY, "Current Warden: ").append(Tx.tf(Formatting.RED, PrisonGameFabric.humanReadableWardenList)))), true);
+                Text finalWarden = Tx.tf(Formatting.RED, PrisonGameFabric.humanReadableWardenList);
+                if (PrisonGameFabric.humanReadableWardenList.equals("available")) {
+                    finalWarden = Tx.ttf(Formatting.RED, Text.translatable("warden.command"));
+                }
+                sendMessage(Tx.tf(profile.getMoneyColor(), "$" + profile.getMoney()).append(Tx.tf(Formatting.GRAY, " | ").append(Tx.ttf(Formatting.DARK_GRAY, Text.translatable("actionbar.currentWarden").append(" ")).append(finalWarden))), true);
             } else {
                 profile.actionBarInvasion--;
             }

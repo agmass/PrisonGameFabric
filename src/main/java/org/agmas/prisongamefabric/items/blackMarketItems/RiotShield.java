@@ -57,8 +57,8 @@ public class RiotShield extends ShieldItem implements PolymerItem {
     }
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.literal("Sprint + Right Click to boost."));
-        tooltip.add(Text.literal("Takes damage when using at all"));
+        tooltip.add(Text.translatable("item.prisongamefabric.riotshield.tip1"));
+        tooltip.add(Text.translatable("item.prisongamefabric.riotshield.tip2"));
         super.appendTooltip(stack, context, tooltip, type);
     }
 

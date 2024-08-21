@@ -70,7 +70,7 @@ public abstract class ItemFrameMixin {
                         }
                     }
                 } else {
-                    spe.sendMessage(Tx.tf(Formatting.RED, "ummm nuh uh " + Tx.randomYour() + " not the warden you cant do that"));
+                    spe.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("error.prisongamefabric.notTheWarden", new Object[]{Tx.randomYour()})));
                 }
                 cir.setReturnValue(ActionResult.FAIL);
                 cir.cancel();
@@ -98,7 +98,7 @@ public abstract class ItemFrameMixin {
                         }
                     }
                 } else {
-                    spe.sendMessage(Tx.tf(Formatting.RED, "ummm nuh uh " + Tx.randomYour() + " not the warden you cant do that"));
+                    spe.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("error.prisongamefabric.notTheWarden", new Object[]{Tx.randomYour()})));
                 }
                 cir.setReturnValue(false);
                 cir.cancel();

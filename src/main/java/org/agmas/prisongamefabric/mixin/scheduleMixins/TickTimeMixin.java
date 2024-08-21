@@ -32,7 +32,7 @@ public abstract class TickTimeMixin {
         double finalTime = (progress*(currentPeriod.worldEndTime-currentPeriod.worldStartTime))+currentPeriod.worldStartTime;
         worldProperties.setTime((long) finalTime);
         setTimeOfDay((long) finalTime);
-        Schedule.scheduleBar.setName(Text.of(Schedule.getCurrentPeriod().name));
+        Schedule.scheduleBar.setName(Text.translatable("schedule.prisongamefabric." + Schedule.getCurrentPeriod().name));
         Schedule.scheduleBar.setPercent(Math.clamp((float) progress, 0, 1));
         ci.cancel();
     }

@@ -1,0 +1,45 @@
+{
+  "upgrade.prisongamefabric.swat": "Garde SWAT",
+  "upgrade.prisongamefabric.swat.description": "Déverrouiller les gardes SWAT",
+  "upgrade.prisongamefabric.gym": "Gymnase",
+  "upgrade.prisongamefabric.gym.description": "Débloque la salle de sport, avec de nouvelles potions.",
+  "upgrade.prisongamefabric.foodcourt": "Cafétéria",
+  "upgrade.prisongamefabric.foodcourt.description": "Déverrouille la cafétéria, avec le travail de cuisine et de nouveaux aliments.",
+  "upgrade.bought": "Acheté!",
+  "upgrade.price": "Prix:",
+  "upgrade.success": "Le directeur de prison a acheté",
+  "purchase.fail": "Vous n'avez pas assez d'argent pour",
+  "actionbar.currentWarden": "Directeur de la prison:",
+  "item.prisongamefabric.riotshield.tip1": "Maj + Clic droit pour faire un Coup de bouclier .",
+  "item.prisongamefabric.riotshield.tip2": "Subit des dégâts lorsqu'il est utilisé.",
+
+  "feedback.prisongamefabric.granted": "Accès accordé",
+  "feedback.prisongamefabric.denied": "Accès refusé",
+  "reason.prisongamefabric.lockdown": "Vous ne pouvez pas ouvrir des portes en confinement.",
+  "reason.prisongamefabric.insufficientLevel": "Niveau %s keycard est requis",
+
+
+  "note.forTranslators": "In the below text, %s returns a random incorrect spelling of you're, as a joke. Do not use %s as it does not translate.",
+  "error.prisongamefabric.notTheWarden": "ummm nuh uh %s not the warden you cant do that",
+
+  "schedule.prisongamefabric.rollcall": "Appel",
+    "schedule.prisongamefabric.breakfast": "Petit déjeuner",
+  "schedule.prisongamefabric.freetime": "Temps libre",
+  "schedule.prisongamefabric.jobtime": "Temps de travail",
+    "schedule.prisongamefabric.eveningrollcall": "Appel nominal du soir",
+  "schedule.prisongamefabric.celltime": "Temps de cellule",
+  "schedule.prisongamefabric.lockdown": "Confinement",
+
+
+  "warden.new": "est le nouveau directeur!",
+  "warden.command": "Utilisez /warden pour devenir le directeur !",
+  "respawn.message": "Réapparition en %s",
+
+  "item.prisongamefabric.riotshield": "Bouclier anti-émeute",
+  "item.prisongamefabric.lumberjackaxe": "Hache de bûcheron",
+  "item.prisongamefabric.shovellingshovel": "Pelle",
+  "item.prisongamefabric.funnysugar": "Drogues",
+  "item.prisongamefabric.keycardlevelthree": "Keycard (Niveau 3)",
+  "item.prisongamefabric.keycardleveltwo": "Keycard (Niveau 2)",
+  "item.prisongamefabric.keycardlevelone": "Keycard (Niveau 1)"
+}

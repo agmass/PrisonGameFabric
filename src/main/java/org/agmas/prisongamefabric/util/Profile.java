@@ -12,6 +12,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
@@ -127,17 +128,17 @@ public class Profile {
         return PrisonGameFabric.PlayerProfiles.get(p.getUuid()).role;
     }
     public static void useFeedback(PlayerEntity p, PlayerFeedbackEnum fe) {
-        useFeedback(p,fe,"");
+        useFeedback(p,fe,Text.literal(""));
     }
-    public static void useFeedback(PlayerEntity p, PlayerFeedbackEnum fe, String reason) {
-        p.sendMessage(Tx.wrapInBrackets(Formatting.GRAY, Tx.tf(fe.textColor, fe.name)).append(Tx.tf(Formatting.GRAY, " "+reason)),true);
+    public static void useFeedback(PlayerEntity p, PlayerFeedbackEnum fe, Text reason) {
+        p.sendMessage(Tx.wrapInBrackets(Formatting.GRAY, Tx.ttf(fe.textColor, Text.translatable("feedback.prisongamefabric." + fe.name))).append(Tx.ttf(Formatting.GRAY, Text.literal(" ").append(reason))),true);
         getProfile(p).actionBarInvasion = 20;
         p.playSoundToPlayer(fe.sound, SoundCategory.MASTER,1f,1f);
     }
 
     public enum PlayerFeedbackEnum {
-        ACCEPTED(Formatting.GREEN, "Access Granted", SoundEvents.BLOCK_NOTE_BLOCK_BIT.value()),
-        DENIED(Formatting.RED, "Access Denied", SoundEvents.ENTITY_VILLAGER_NO);
+        ACCEPTED(Formatting.GREEN, "granted", SoundEvents.BLOCK_NOTE_BLOCK_BIT.value()),
+        DENIED(Formatting.RED, "denied", SoundEvents.ENTITY_VILLAGER_NO);
 
         Formatting textColor;
         SoundEvent sound;

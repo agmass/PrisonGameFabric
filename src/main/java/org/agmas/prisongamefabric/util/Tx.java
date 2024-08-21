@@ -13,6 +13,11 @@ public class Tx {
         return Text.literal(t).setStyle(Style.EMPTY.withFormatting(Formatting.RESET).withFormatting(f)).copy();
     }
 
+    public static MutableText ttf(Formatting f, MutableText t) {
+        return t.setStyle(Style.EMPTY.withFormatting(Formatting.RESET).withFormatting(f)).copy();
+    }
+
+
 
     public static MutableText wrapInBrackets(Formatting background, Text text) {
         return tf(background, "[").append(text.copy().append(tf(background, "]")));

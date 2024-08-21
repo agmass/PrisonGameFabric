@@ -4,13 +4,13 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 
 public class PrisonUpgrade {
     public final String name;
-    public final String description;
     public final Integer price;
     public final Identifier itemIcon;
     public final Optional<Identifier> globalLock;
@@ -19,7 +19,6 @@ public class PrisonUpgrade {
 
     public static final Codec<PrisonUpgrade> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("name").forGetter(PrisonUpgrade::getName),
-            Codec.STRING.fieldOf("description").forGetter(PrisonUpgrade::getDescription),
             Codec.INT.fieldOf("price").forGetter(PrisonUpgrade::getPrice),
             Identifier.CODEC.fieldOf("itemIcon").forGetter(PrisonUpgrade::getItemIcon),
             Identifier.CODEC.optionalFieldOf("onGlobalLock").forGetter(PrisonUpgrade::getGlobalLock),
@@ -27,9 +26,8 @@ public class PrisonUpgrade {
             // Up to 16 fields can be declared here
     ).apply(instance,PrisonUpgrade::new));
 
-    public PrisonUpgrade(String name, String description, Integer price, Identifier itemIcon, Optional<Identifier> globalLock, Optional<Identifier> globalUnlock) {
+    public PrisonUpgrade(String name, Integer price, Identifier itemIcon, Optional<Identifier> globalLock, Optional<Identifier> globalUnlock) {
         this.name = name;
-        this.description = description;
         this.price = price;
 
         this.itemIcon = itemIcon;
@@ -54,8 +52,11 @@ public class PrisonUpgrade {
         return globalLock;
     }
 
-    public String getDescription() {
-        return description;
+    public Text getDescription() {
+        return Text.translatable("upgrade.prisongamefabric."+name+".description");
+    }
+    public Text getTranslatedName() {
+        return Text.translatable("upgrade.prisongamefabric."+name);
     }
 
     public Optional<Identifier> getGlobalUnlock() {

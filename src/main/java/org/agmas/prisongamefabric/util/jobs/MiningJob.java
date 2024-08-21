@@ -8,8 +8,8 @@ import org.agmas.prisongamefabric.PrisonGameItems;
 import org.agmas.prisongamefabric.util.Tx;
 
 public enum MiningJob implements StringIdentifiable {
-    LUMBERJACK("Lumberjack", PrisonGameItems.LUMBERJACKAXE, Tx.tf(Formatting.GOLD, "Mine spruce logs to get money!")),
-    SHOVELING("Shoveling", PrisonGameItems.SHOVELSHOVEL, Tx.tf(Formatting.WHITE, "Mine coarse dirt to get money!"));
+    LUMBERJACK("Lumberjack", PrisonGameItems.LUMBERJACKAXE, Tx.ttf(Formatting.GOLD, Text.translatable("tip.lumberjack"))),
+    SHOVELING("Shoveling", PrisonGameItems.SHOVELSHOVEL, Tx.ttf(Formatting.WHITE, Text.translatable("tip.shovel")));
 
     public String name;
     public Item jobItem;

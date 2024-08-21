@@ -4,6 +4,7 @@ import net.fabricmc.loader.impl.util.log.Log;
 import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.BossBarManager;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,13 +17,13 @@ public class Schedule {
     public static BossBar scheduleBar;
 
     public static void createSchedule() {
-        entries.add(new ScheduleEntry(60, "Roll Call", 0, 1000, true,true));
-        entries.add(new ScheduleEntry(60, "Breakfast", 1000, 2000, true));
-        entries.add(new ScheduleEntry(100, "Free Time", 2000, 4000, true));
-        entries.add(new ScheduleEntry(140, "Job Time", 4000, 11000, true));
-        entries.add(new ScheduleEntry(60, "Evening Roll Call", 11000, 13000, true));
-        entries.add(new ScheduleEntry(60, "Cell Time", 13000, 14000, true));
-        ScheduleEntry lockDown = new ScheduleEntry(80, "Lockdown", 14000, 23999, true);
+        entries.add(new ScheduleEntry(60, "rollcall", 0, 1000, true,true));
+        entries.add(new ScheduleEntry(60, "breakfast", 1000, 2000, true));
+        entries.add(new ScheduleEntry(100, "freetime", 2000, 4000, true));
+        entries.add(new ScheduleEntry(140, "jobtime", 4000, 11000, true));
+        entries.add(new ScheduleEntry(60, "eveningrollcall", 11000, 13000, true));
+        entries.add(new ScheduleEntry(60, "celltime", 13000, 14000, true));
+        ScheduleEntry lockDown = new ScheduleEntry(80, "lockdown", 14000, 23999, true);
         lockDown.specialProperties.add("lockdown");
         entries.add(lockDown);
 
@@ -65,5 +66,9 @@ public class Schedule {
                 worldStartTime = start;
                 worldEndTime = end;
             }
+
+        public Text getName() {
+            return Text.translatable("schedule.prisongamefabric." + name);
+        }
     }
 }

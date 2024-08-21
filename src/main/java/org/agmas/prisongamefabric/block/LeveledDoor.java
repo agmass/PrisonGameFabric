@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
@@ -46,10 +47,10 @@ public class LeveledDoor extends DoorBlock implements PolymerBlock {
             return ActionResult.success(true);
         } else if (level != 0){
 
-            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, "Level " + level + " keycard required.");
+            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, Text.translatable("reason.prisongamefabric.lockdown", new Object[]{}));
         } else {
 
-            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, "You cannot open doors in lockdown.");
+            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, Text.translatable("reason.prisongamefabric.insufficientLevel", new Object[]{"1"}));
         }
         return ActionResult.PASS;
     }

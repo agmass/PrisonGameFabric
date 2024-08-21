@@ -30,16 +30,14 @@ public class UpgradesMicroUI extends MicroUi {
             if (PrisonGameFabric.progress.upgrades.contains(upgrade)) {
                 upgradeRepresenter = Items.BEDROCK.getDefaultStack();
             }
-            upgradeRepresenter.set(DataComponentTypes.ITEM_NAME, Tx.tf(Formatting.GOLD, upgrade.name));
-            List<String> desc = List.of(upgrade.description.split("\\n"));
+            upgradeRepresenter.set(DataComponentTypes.ITEM_NAME, Tx.ttf(Formatting.GOLD, upgrade.getTranslatedName().copy()));
+            List<String> desc = List.of();
             ArrayList<Text> finalD = new ArrayList<>();
-            desc.forEach((s)->{
-                finalD.add(Tx.tf(Formatting.WHITE,s));
-            });
+            finalD.add(Tx.ttf(Formatting.WHITE,upgrade.getDescription().copy()));
             if (PrisonGameFabric.progress.upgrades.contains(upgrade)) {
-                finalD.add(Tx.tf(Formatting.GRAY, "Bought!"));
+                finalD.add(Tx.ttf(Formatting.GRAY, Text.translatable("upgrade.bought")));
             } else {
-                finalD.add(Tx.tf(Formatting.GRAY, "Price: ").append(Tx.tf(Formatting.GREEN, upgrade.price + "$")));
+                finalD.add(Tx.ttf(Formatting.GRAY, Text.translatable("upgrade.price").append(" ")).append(Tx.tf(Formatting.GREEN, upgrade.price + "$")));
             }
             upgradeRepresenter.set(DataComponentTypes.LORE, new LoreComponent(finalD,finalD));
             if (!PrisonGameFabric.progress.upgrades.contains(upgrade)) {
@@ -47,13 +45,13 @@ public class UpgradesMicroUI extends MicroUi {
                     Profile prof = Profile.getProfile(player);
                     if (prof.getMoney() >= upgrade.price) {
                         PrisonGameFabric.serverInstance.getPlayerManager().getPlayerList().forEach((p) -> {
-                            p.sendMessage(Tx.tf(Formatting.GREEN, "The warden has bought " + upgrade.name + "!"));
+                            p.sendMessage(Tx.ttf(Formatting.GREEN, Text.translatable("upgrade.success").append(" ").append(upgrade.getTranslatedName()).append("!")));
                         });
                         prof.setMoney(prof.getMoney()-upgrade.price);
                         player.closeHandledScreen();
                         a.unlock(true);
                     } else {
-                        player.sendMessage(Tx.tf(Formatting.RED, "You don't have enough money to buy " + upgrade.name + "!"));
+                        player.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("purchase.fail").append(" ").append(upgrade.getTranslatedName()).append("!")));
 
                     }
                 });

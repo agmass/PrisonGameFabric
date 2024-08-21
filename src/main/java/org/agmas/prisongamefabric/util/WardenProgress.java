@@ -1,5 +1,6 @@
 package org.agmas.prisongamefabric.util;
 
+import net.fabricmc.fabric.impl.resource.loader.ServerLanguageUtil;
 import net.fabricmc.loader.impl.util.log.Log;
 import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +11,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.function.CommandFunction;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.agmas.prisongamefabric.PrisonGameFabric;
@@ -36,7 +38,7 @@ public class WardenProgress {
         profile.setRole(Role.WARDEN);
         p.getServer().getPlayerManager().getPlayerList().forEach((serverPlayerEntity -> {
             serverPlayerEntity.networkHandler.sendPacket(new TitleS2CPacket(Tx.tf(Formatting.RED,p.getName().getLiteralString())));
-            serverPlayerEntity.networkHandler.sendPacket(new SubtitleS2CPacket(Tx.tf(Formatting.GREEN, "is the new warden!")));
+            serverPlayerEntity.networkHandler.sendPacket(new SubtitleS2CPacket(Tx.ttf(Formatting.GREEN, Text.translatable("warden.new"))));
             serverPlayerEntity.playSoundToPlayer(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1, 1);
             if (p.getUuid().equals(serverPlayerEntity.getUuid())) return;
             Profile profile2 = Profile.getProfile(serverPlayerEntity);
@@ -44,7 +46,6 @@ public class WardenProgress {
                 profile2.setRole(Role.PRISONER);
             }
         }));
-        p.sendMessage(Tx.tf(Formatting.GREEN, "----------------\nYou are the new warden!\nuse /warden help to see how it works!\n----------------"));
         PrisonGameFabric.active.upgrades.forEach((u)->{
             u.lock(true);
             if (u.safeZone.isPresent()) {

@@ -7,6 +7,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.function.CommandFunction;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import org.agmas.prisongamefabric.PrisonGameFabric;
@@ -58,7 +59,7 @@ public class ShopSign {
     }
 
     public void attemptButFail(ServerPlayerEntity spe) {
-        spe.sendMessage(Tx.tf(Formatting.RED, "You don't have enough money to buy " + name + "!"));
+        spe.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("purchase.fail").append(name + "!")));
         CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(failFunction).orElse(null);
         ServerCommandSource playerSpecificSource = PrisonGameFabric.commandSource.withEntity(spe);
         PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, playerSpecificSource);

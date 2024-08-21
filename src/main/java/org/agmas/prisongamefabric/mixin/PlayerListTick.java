@@ -86,7 +86,7 @@ public abstract class PlayerListTick {
             if (PrisonGameFabric.progress.gameEndingWarden != null) {
                 PrisonGameFabric.handleDisconnectedWarden();
             }
-            PrisonGameFabric.humanReadableWardenList = "Use /warden to become the warden!";
+            PrisonGameFabric.humanReadableWardenList = "available";
         }
         PlayerListHeaderS2CPacket headerS2CPacket = new PlayerListHeaderS2CPacket(header.copy().append(warden).append(guards).append(prisoners), Text.of(""));
         getPlayerManager().getPlayerList().forEach((spe)->{
