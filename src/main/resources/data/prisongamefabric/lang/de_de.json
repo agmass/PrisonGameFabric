@@ -1,0 +1,46 @@
+{
+  "upgrade.prisongamefabric.swat": "SWAT Wache",
+  "upgrade.prisongamefabric.swat.description": "Schalte SWAT Wachen frei",
+  "upgrade.prisongamefabric.gym": "Fitnessstudio",
+  "upgrade.prisongamefabric.gym.description": "Schalted das Fitnessstudio mit neuen Tränken frei.",
+  "upgrade.prisongamefabric.foodcourt": "Gastronomiebereich",
+  "upgrade.prisongamefabric.foodcourt.description": "Schalted den Gastronomiebereich mit dem Kochjob und neuem Essen.",
+  "upgrade.bought": "Gekauft!",
+  "upgrade.price": "Preis:",
+  "upgrade.success": "Der Direktor hat gekauft",
+  "purchase.fail": "Du hast nicht genug Geld dafür",
+  "actionbar.currentWarden": "Derzeitiger Direktor:",
+  "item.prisongamefabric.riotshield.tip1": "Umschalttaste + Rechte Maustaste für einen Schildangriff.",
+  "item.prisongamefabric.riotshield.tip2": "Verliert Haltbarkeit beim benutzen.",
+
+  "feedback.prisongamefabric.granted": "Zugriff gewährt",
+  "feedback.prisongamefabric.denied": "Zugriff abgelehnt",
+  "reason.prisongamefabric.lockdown": "Du kannst keine Türen während einer Sperrung öffnen.",
+  "reason.prisongamefabric.insufficientLevel": "Level %s Schlüsselkarte benötigt",
+
+  "schedule.prisongamefabric.rollcall": "Aufruf",
+  "schedule.prisongamefabric.breakfast": "Frühstück",
+  "schedule.prisongamefabric.freetime": "Freizeit",
+  "schedule.prisongamefabric.jobtime": "Arbeitszeit",
+  "schedule.prisongamefabric.eveningrollcall": "Abends Aufruf",
+  "schedule.prisongamefabric.celltime": "Zellenzeit",
+  "schedule.prisongamefabric.lockdown": "Sperrung",
+
+  "note.forTranslators": "In the below text, %s returns a random incorrect spelling of you're, as a joke. Do not use %s as it does not translate.",
+  "error.prisongamefabric.notTheWarden": "ummm nein äh %s nicht der Direktor du kannst das nicht tun",
+
+  "warden.new": "ist der neue Direktor!",
+  "warden.command": "Benutze /warden um Direktor zu werden!",
+  "respawn.message": "Wiederbelebung in %s",
+
+  "tip.lumberjack": "Baue Fichtenstämme ab, um Geld verdienen!",
+  "tip.shovel": "Baue Erde ab, um Geld zu verdienen!",
+
+  "item.prisongamefabric.riotshield": "Aufruhr Schild",
+  "item.prisongamefabric.lumberjackaxe": "Holzfäller Axt",
+  "item.prisongamefabric.shovellingshovel": "Schaufel",
+  "item.prisongamefabric.funnysugar": "Spaßiger Zucker",
+  "item.prisongamefabric.keycardlevelthree": "Schlüsselkarte (Level 3)",
+  "item.prisongamefabric.keycardleveltwo": "Schlüsselkarte (Level 2)",
+  "item.prisongamefabric.keycardlevelone": "Schlüsselkarte (Level 1)"
+}

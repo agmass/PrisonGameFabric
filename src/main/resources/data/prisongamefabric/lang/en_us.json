@@ -33,8 +33,8 @@
   "warden.command": "Use /warden to become the warden!",
   "respawn.message": "Respawning in %s",
 
-  "tip.lumberjack": "Extrayez des bûches d'épinette pour gagner de l'argent !",
-  "tip.shovel": "Extrayez de la terre pour gagner de l'argent !",
+  "tip.lumberjack": "Mine spruce logs to get money!",
+  "tip.shovel": "Mine coarse dirt to get money!",
 
   "item.prisongamefabric.riotshield": "Riot Shield",
   "item.prisongamefabric.lumberjackaxe": "Lumberjack Axe",

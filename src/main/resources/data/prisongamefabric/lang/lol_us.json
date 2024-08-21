@@ -1,0 +1,46 @@
+{
+  "upgrade.prisongamefabric.swat": "scary netherite guard",
+  "upgrade.prisongamefabric.swat.description": "very strong !!! ",
+  "upgrade.prisongamefabric.gym": "working out place",
+  "upgrade.prisongamefabric.gym.description": "wooooaaajjj you can like work out here that's cool",
+  "upgrade.prisongamefabric.foodcourt": "eaty eaty place",
+  "upgrade.prisongamefabric.foodcourt.description": "food :3c",
+  "upgrade.bought": "already have idiot!! x3",
+  "upgrade.price": "moneyz to spend:",
+  "upgrade.success": "le meowden has bought",
+  "purchase.fail": ":( no moneyz for ",
+  "actionbar.currentWarden": "Current Meowden:",
+  "item.prisongamefabric.riotshield.tip1": "Shift + Meow Click to Shield Meow.",
+  "item.prisongamefabric.riotshield.tip2": "will start to lose health if u hold it too long.. :(",
+
+  "feedback.prisongamefabric.granted": "OMG YOU GET TO GO THRU!!",
+  "feedback.prisongamefabric.denied": "nuh uh",
+  "reason.prisongamefabric.lockdown": "no opening dor when prison is lock!!!",
+  "reason.prisongamefabric.insufficientLevel": "u need level %s....",
+
+  "schedule.prisongamefabric.rollcall": "rolling timee!!!",
+  "schedule.prisongamefabric.breakfast": "eaty eaty yay",
+  "schedule.prisongamefabric.freetime": "do whatever!! x3",
+  "schedule.prisongamefabric.jobtime": "work....",
+  "schedule.prisongamefabric.eveningrollcall": "rolling timee!!! twooo!!!!!!",
+  "schedule.prisongamefabric.celltime": "cellphone time?",
+  "schedule.prisongamefabric.lockdown": "prison is lock :(",
+
+  "note.forTranslators": "In the below text, %s returns a random incorrect spelling of you're, as a joke. Do not use %s as it does not translate.",
+  "error.prisongamefabric.notTheWarden": "ummm nuh uh %s not the warden you cant do that",
+
+  "warden.new": "is the new meowden!!!!!!!!!!!!!!!!!!!!",
+  "warden.command": "Use /warden to become the meowden :O",
+  "respawn.message": "life come back in %s :3",
+
+  "tip.lumberjack": "Mine spruce logs to get moneyz!!!",
+  "tip.shovel": "Mine coarse dirt to get moneyz!!!",
+
+  "item.prisongamefabric.riotshield": "Funny shield bash shield!!!",
+  "item.prisongamefabric.lumberjackaxe": "chop choppy",
+  "item.prisongamefabric.shovellingshovel": "dig dig",
+  "item.prisongamefabric.funnysugar": "catnip",
+  "item.prisongamefabric.keycardlevelthree": "door opener (Level 3)",
+  "item.prisongamefabric.keycardleveltwo": "door opener (Level 2)",
+  "item.prisongamefabric.keycardlevelone": "door opener (Level 1)"
+}

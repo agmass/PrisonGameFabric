@@ -1,0 +1,46 @@
+{
+  "upgrade.prisongamefabric.swat": "Strażnicy SWAT",
+  "upgrade.prisongamefabric.swat.description": "Odblokuj strażników SWAT",
+  "upgrade.prisongamefabric.gym": "sala gimnastyczna",
+  "upgrade.prisongamefabric.gym.description": "Odblokowuje siłownię z nowymi miksturami.",
+  "upgrade.prisongamefabric.foodcourt": "strefa gastronomiczna",
+  "upgrade.prisongamefabric.foodcourt.description": "Odblokowuje strefę gastronomiczną, oferującą pracę kucharza i nowe jedzenie.",
+  "upgrade.bought": "Kupił!",
+  "upgrade.price": "Cena:",
+  "upgrade.success": "Naczelnik kupił",
+  "purchase.fail": "Nie masz wystarczająco pieniędzy na",
+  "actionbar.currentWarden": "Obecny Naczelnik:",
+  "item.prisongamefabric.riotshield.tip1": "klawisz Shift + prawy przycisk myszy - atak tarczą.",
+  "item.prisongamefabric.riotshield.tip2": "Zostaje uszkodzony, gdy jest trzymany.",
+
+  "feedback.prisongamefabric.granted": "Dostęp przyznany",
+  "feedback.prisongamefabric.denied": "Odmowa dostępu",
+  "reason.prisongamefabric.lockdown": "Nie można otwierać drzwi podczas zamknięcia.",
+  "reason.prisongamefabric.insufficientLevel": "Wymagana karta dostępu poziomu %s",
+
+  "schedule.prisongamefabric.rollcall": "Apel",
+  "schedule.prisongamefabric.breakfast": "Śniadanie",
+  "schedule.prisongamefabric.freetime": "Czas wolny",
+  "schedule.prisongamefabric.jobtime": "Czas pracy",
+  "schedule.prisongamefabric.eveningrollcall": "Wieczorny apel",
+  "schedule.prisongamefabric.celltime": "Czas komórkowy",
+  "schedule.prisongamefabric.lockdown": "Izolacja",
+
+  "note.forTranslators": "In the below text, %s returns a random incorrect spelling of you're, as a joke. Do not use %s as it does not translate.",
+  "error.prisongamefabric.notTheWarden": "ummm nie, uh %s nie jesteś naczelnikiem, nie możesz tego zrobić",
+
+  "warden.new": "jest nowym naczelnikiem!",
+  "warden.command": "Użyj /warden, aby zostać strażnikiem!",
+  "respawn.message": "Odradzanie się w %s",
+
+  "tip.lumberjack": "Wydobywaj kłody świerkowe i zarabiaj pieniądze!",
+  "tip.shovel": "Kopalnia brudu, aby zarobić pieniądze!",
+
+  "item.prisongamefabric.riotshield": "Tarcza przeciwko zamieszkom",
+  "item.prisongamefabric.lumberjackaxe": "Siekiera drwala",
+  "item.prisongamefabric.shovellingshovel": "Łopata",
+  "item.prisongamefabric.funnysugar": "Śmieszny cukier",
+  "item.prisongamefabric.keycardlevelthree": "Karta kluczowa (poziom 3)",
+  "item.prisongamefabric.keycardleveltwo": "Karta kluczowa (poziom 2)",
+  "item.prisongamefabric.keycardlevelone": "Karta kluczowa (poziom 1)"
+}
