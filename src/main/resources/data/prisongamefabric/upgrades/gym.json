@@ -1,0 +1,6 @@
+{
+  "name": "Gym",
+  "description": "Unlocks the gym, with new potions.",
+  "itemIcon": "minecraft:red_wool",
+  "price": 500
+}

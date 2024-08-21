@@ -35,7 +35,9 @@ public class KitItems {
         swatItems.add(Items.COOKED_BEEF.getDefaultStack().copyWithCount(24));
         swatItems.add(Items.GOLDEN_APPLE.getDefaultStack().copyWithCount(8));
         swatItems.add(PrisonGameItems.THREE_CARD.getDefaultStack());
-        return makeUnbreakable(swatItems);
+        makeUnbreakable(swatItems);
+        swatItems.add(PrisonGameItems.RIOTSHIELD.getDefaultStack());
+        return swatItems;
     }
     public static ArrayList<ItemStack> warden() {
         ArrayList<ItemStack> wardenItems = new ArrayList<>();

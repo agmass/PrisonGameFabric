@@ -1,0 +1,6 @@
+{
+  "name": "Raw Iron",
+  "price": 150,
+  "purchase": "pbfblackmarket:rawiron",
+  "fail": "prisongamefabric:nothing"
+}

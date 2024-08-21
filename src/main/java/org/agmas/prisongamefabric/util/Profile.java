@@ -31,7 +31,7 @@ public class Profile {
     public Role role = Role.PRISONER;
     public PlayerEntity player;
     public ItemStack helmetItem=ItemStack.EMPTY;
-    public PrisonLocation blackMarketExit =null;
+    public PrisonLocation blackMarketEnterancePoint =null;
     public int respawnTime=0;
     public int actionBarInvasion=0;
     public int maxRespawnTime=20*5;
@@ -82,7 +82,7 @@ public class Profile {
         });
         final int[] i = {0};
         role.armor.forEach((item)-> {
-            player.getInventory().armor.set(i[0], item);
+            player.getInventory().armor.set(i[0], item.copy());
             i[0]++;
         });
 

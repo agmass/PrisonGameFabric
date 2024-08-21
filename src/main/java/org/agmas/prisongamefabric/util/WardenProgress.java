@@ -32,18 +32,18 @@ public class WardenProgress {
     public WardenProgress(PlayerEntity p) {
         gameEndingWarden = p.getUuid();
         wardenName = p.getName().getLiteralString();
+        Profile profile = Profile.getProfile(p);
+        profile.setRole(Role.WARDEN);
         p.getServer().getPlayerManager().getPlayerList().forEach((serverPlayerEntity -> {
             serverPlayerEntity.networkHandler.sendPacket(new TitleS2CPacket(Tx.tf(Formatting.RED,p.getName().getLiteralString())));
             serverPlayerEntity.networkHandler.sendPacket(new SubtitleS2CPacket(Tx.tf(Formatting.GREEN, "is the new warden!")));
             serverPlayerEntity.playSoundToPlayer(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1, 1);
             if (p.getUuid().equals(serverPlayerEntity.getUuid())) return;
-            Profile profile = Profile.getProfile(serverPlayerEntity);
-            if (profile.role.power.powerful) {
-                profile.setRole(Role.PRISONER);
+            Profile profile2 = Profile.getProfile(serverPlayerEntity);
+            if (profile2.role.power.powerful) {
+                profile2.setRole(Role.PRISONER);
             }
         }));
-        Profile profile = Profile.getProfile(p);
-        profile.setRole(Role.WARDEN);
         p.sendMessage(Tx.tf(Formatting.GREEN, "----------------\nYou are the new warden!\nuse /warden help to see how it works!\n----------------"));
         PrisonGameFabric.active.upgrades.forEach((u)->{
             u.lock(true);

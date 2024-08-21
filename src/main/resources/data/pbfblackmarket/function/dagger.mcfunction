@@ -1,0 +1,1 @@
+give @s iron_sword[custom_name='["",{"text":"Dagger","italic":false}]',enchantments={levels:{sharpness:1}},unbreakable={}]

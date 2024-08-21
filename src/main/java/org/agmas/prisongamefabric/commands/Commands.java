@@ -71,7 +71,6 @@ public class Commands {
                 }
         )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setrole")
-                .requires(source -> source.hasPermissionLevel(2))
                 .then(argument("role", RoleArgumentType.role()).executes(context -> {
 
                     final Role value = RoleArgumentType.getRole("role", context);

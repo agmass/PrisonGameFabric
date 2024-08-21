@@ -3,7 +3,6 @@ package org.agmas.prisongamefabric.prisons;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import org.agmas.prisongamefabric.prisons.upgrades.UpgradeWithMapSpecifics;
@@ -21,6 +20,8 @@ public class Prison {
     public final PrisonLocation wardenSpawn;
     public final PrisonLocation guardSpawn;
     public final PrisonLocation computerTeleport;
+    public final PrisonLocation blackMarketTeleport;
+    public final PrisonZone blackMarketExit;
     public final Optional<List<Identifier>> onTick;
 
     public static final Codec<Prison> CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -31,11 +32,13 @@ public class Prison {
             PrisonLocation.CODEC.fieldOf("wardenSpawn").forGetter(Prison::getWardenSpawn),
             PrisonLocation.CODEC.fieldOf("guardSpawn").forGetter(Prison::getGuardSpawn),
             PrisonLocation.CODEC.fieldOf("computerTeleport").forGetter(Prison::getComputerTeleport),
+            PrisonLocation.CODEC.fieldOf("blackMarketTeleport").forGetter(Prison::getBlackMarketTeleport),
+            PrisonZone.CODEC.fieldOf("blackMarketExit").forGetter(Prison::getBlackMarketExit),
             Identifier.CODEC.listOf().optionalFieldOf("onTick").forGetter(Prison::getOnTick)
             // Up to 16 fields can be declared here
     ).apply(instance, Prison::new));
 
-    public Prison(String name, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, Optional<List<Identifier>> onTick) {
+    public Prison(String name, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, PrisonLocation blackMarketTeleport, PrisonZone blackMarketExit, Optional<List<Identifier>> onTick) {
         this.name = name;
         this.itemIcon = itemIcon;
         this.itemIconAsItem = Registries.ITEM.get(itemIcon);
@@ -44,6 +47,8 @@ public class Prison {
         this.wardenSpawn = wardenSpawn;
         this.guardSpawn = guardSpawn;
         this.computerTeleport = computerTeleport;
+        this.blackMarketTeleport = blackMarketTeleport;
+        this.blackMarketExit = blackMarketExit;
         this.onTick = onTick;
     }
 
@@ -77,5 +82,13 @@ public class Prison {
 
     public ArrayList<UpgradeWithMapSpecifics> getUpgrades() {
         return upgrades;
+    }
+
+    public PrisonLocation getBlackMarketTeleport() {
+        return blackMarketTeleport;
+    }
+
+    public PrisonZone getBlackMarketExit() {
+        return blackMarketExit;
     }
 }

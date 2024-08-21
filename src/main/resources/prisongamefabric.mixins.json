@@ -13,6 +13,10 @@
     "players.PlayerDrop",
     "players.PlayerTick",
     "players.ServerPlayerInteractionManagerMixin",
+    "players.interactionFuckers.AnvilItemMixin",
+    "players.interactionFuckers.TrapdoorBlockMixin",
+    "recipebook.RecipeBookMixin",
+    "recipebook.ServerRecipeBookMixin",
     "scheduleMixins.ScheduleTickMixin",
     "scheduleMixins.TickTimeMixin"
   ],

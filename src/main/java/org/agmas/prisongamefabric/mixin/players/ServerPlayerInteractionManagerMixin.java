@@ -74,7 +74,7 @@ public abstract class ServerPlayerInteractionManagerMixin {
         BlockPos blockPos = hitResult.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
          if (gameMode != GameMode.SPECTATOR) {
-             if (blockState.getBlock().equals(Blocks.SPRUCE_WALL_SIGN)) {
+             if (blockState.getBlock().equals(Blocks.SPRUCE_WALL_SIGN) || blockState.getBlock().equals(Blocks.BIRCH_WALL_SIGN)) {
                  BlockEntity be = world.getBlockEntity(blockPos);
                  if (be instanceof SignBlockEntity signBlockEntity) {
                      for (MiningJob j : MiningJob.values()) {

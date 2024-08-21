@@ -86,6 +86,9 @@ public abstract class PlayerTick {
                 }
                 profile.previousMapState = null;
             }
+            if (PrisonGameFabric.active.blackMarketExit.isInside(thisplayer)) {
+                thisplayer.requestTeleport(profile.blackMarketEnterancePoint.x,profile.blackMarketEnterancePoint.y,profile.blackMarketEnterancePoint.z);
+            }
             if (profile.respawnTime > 0) {
                 profile.respawnTime -= 1;
                 changeGameMode(GameMode.SPECTATOR);

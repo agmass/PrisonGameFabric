@@ -1,0 +1,6 @@
+{
+  "name": "Riot Shield",
+  "price": 300,
+  "purchase": "pbfblackmarket:shield",
+  "fail": "prisongamefabric:nothing"
+}

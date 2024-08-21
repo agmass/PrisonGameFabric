@@ -40,7 +40,7 @@ public class Keycard extends Item implements PolymerItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        user.getWorld().playSound(user, user.getBlockPos(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.MASTER, 0.5f, 2);
+        user.getWorld().playSound(user, user.getBlockPos().getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.MASTER, 0.5f, 2);
         return super.use(world, user, hand);
     }
 

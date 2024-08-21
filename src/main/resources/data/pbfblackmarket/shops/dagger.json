@@ -1,0 +1,6 @@
+{
+  "name": "Dagger",
+  "price": 500,
+  "purchase": "pbfblackmarket:dagger",
+  "fail": "prisongamefabric:nothing"
+}
