@@ -1,0 +1,1 @@
+give @s potion[potion_contents={custom_color:3847086,custom_effects:[{id:speed,duration:15,amplifier:0}]},custom_name='["",{"text":"Speed Potion","italic":false}]']

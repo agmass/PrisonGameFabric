@@ -42,5 +42,7 @@
   "item.prisongamefabric.funnysugar": "Funny Sugar",
   "item.prisongamefabric.keycardlevelthree": "Keycard (Level 3)",
   "item.prisongamefabric.keycardleveltwo": "Keycard (Level 2)",
-  "item.prisongamefabric.keycardlevelone": "Keycard (Level 1)"
+  "item.prisongamefabric.keycardlevelone": "Keycard (Level 1)",
+  "escape.player": "%s escaped the prison!",
+  "block.prisongamefabric.refillblock.cooldown": "Barrel on cooldown! Refilling in %s"
 }

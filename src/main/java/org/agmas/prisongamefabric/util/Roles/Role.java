@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public enum Role {
     OUTOFGAME("OutOfGame", Formatting.GRAY, Formatting.BLUE, PositionInPower.PRISONLESS, KitItems.empty (), Armor.empty()),
+    CRIMINAL("Criminal", Formatting.RED, Formatting.GRAY, PositionInPower.PRISONLESS, KitItems.empty (), Armor.empty()),
     PRISONER("Prisoner", Formatting.GOLD, Formatting.GRAY, PositionInPower.PRISONER, KitItems.empty(), Armor.prisoner()),
     GUARD("Guard", Formatting.BLUE, Formatting.WHITE, PositionInPower.GUARD, KitItems.guard(), Armor.guard()),
     NURSE("Nurse", Formatting.LIGHT_PURPLE, Formatting.WHITE, PositionInPower.GUARD, KitItems.nurse(), Armor.nurse()),

@@ -1,0 +1,6 @@
+{
+  "name": "Steak",
+  "price": 30,
+  "purchase": "prisongamecafeteria:steak",
+  "fail": "prisongamefabric:nothing"
+}

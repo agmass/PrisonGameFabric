@@ -112,5 +112,17 @@
       "z": 155
     }
   },
+  "escapeZone": {
+    "zoneStart": {
+      "x": -5,
+      "y": 34,
+      "z": 195
+    },
+    "zoneEnd": {
+      "x": 24,
+      "y": 12,
+      "z": 243
+    }
+  },
   "onTick": ["prisongamefabric:rain"]
 }

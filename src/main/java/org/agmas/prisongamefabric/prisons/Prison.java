@@ -21,6 +21,7 @@ public class Prison {
     public final PrisonLocation guardSpawn;
     public final PrisonLocation computerTeleport;
     public final PrisonLocation blackMarketTeleport;
+    public final PrisonZone escapeZone;
     public final PrisonZone blackMarketExit;
     public final Optional<List<Identifier>> onTick;
 
@@ -33,12 +34,13 @@ public class Prison {
             PrisonLocation.CODEC.fieldOf("guardSpawn").forGetter(Prison::getGuardSpawn),
             PrisonLocation.CODEC.fieldOf("computerTeleport").forGetter(Prison::getComputerTeleport),
             PrisonLocation.CODEC.fieldOf("blackMarketTeleport").forGetter(Prison::getBlackMarketTeleport),
+            PrisonZone.CODEC.fieldOf("escapeZone").forGetter(Prison::getEscapeZone),
             PrisonZone.CODEC.fieldOf("blackMarketExit").forGetter(Prison::getBlackMarketExit),
             Identifier.CODEC.listOf().optionalFieldOf("onTick").forGetter(Prison::getOnTick)
             // Up to 16 fields can be declared here
     ).apply(instance, Prison::new));
 
-    public Prison(String name, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, PrisonLocation blackMarketTeleport, PrisonZone blackMarketExit, Optional<List<Identifier>> onTick) {
+    public Prison(String name, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, PrisonLocation blackMarketTeleport, PrisonZone escapeZone, PrisonZone blackMarketExit, Optional<List<Identifier>> onTick) {
         this.name = name;
         this.itemIcon = itemIcon;
         this.itemIconAsItem = Registries.ITEM.get(itemIcon);
@@ -48,8 +50,13 @@ public class Prison {
         this.guardSpawn = guardSpawn;
         this.computerTeleport = computerTeleport;
         this.blackMarketTeleport = blackMarketTeleport;
+        this.escapeZone = escapeZone;
         this.blackMarketExit = blackMarketExit;
         this.onTick = onTick;
+    }
+
+    public PrisonZone getEscapeZone() {
+        return escapeZone;
     }
 
     public Optional<List<Identifier>> getOnTick() {

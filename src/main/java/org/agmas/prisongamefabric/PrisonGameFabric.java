@@ -99,10 +99,13 @@ public class PrisonGameFabric implements ModInitializer {
             me.add(PrisonGameItems.ONE_CARD);
             me.add(PrisonGameItems.TWO_CARD);
             me.add(PrisonGameItems.THREE_CARD);
+            me.add(PrisonGameBlocks.ZERO_DOOR);
             me.add(PrisonGameBlocks.ONE_DOOR);
             me.add(PrisonGameBlocks.TWO_DOOR);
             me.add(PrisonGameBlocks.THREE_DOOR);
             me.add(PrisonGameBlocks.REFILLBLOCK);
+            me.add(PrisonGameBlocks.POOPBLOCK);
+            me.add(PrisonGameBlocks.BLACKMARKETCAULDRON);
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register((a)->

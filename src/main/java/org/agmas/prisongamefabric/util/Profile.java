@@ -5,6 +5,7 @@ import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.client.sound.Sound;
 import net.minecraft.component.type.MapIdComponent;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.map.MapState;
@@ -34,6 +35,7 @@ public class Profile {
     public ItemStack helmetItem=ItemStack.EMPTY;
     public PrisonLocation blackMarketEnterancePoint =null;
     public int respawnTime=0;
+    public int barrelCooldown=0;
     public int actionBarInvasion=0;
     public int maxRespawnTime=20*5;
     public boolean reviveDirty=true;
@@ -76,19 +78,56 @@ public class Profile {
     }
 
     public void setRole(Role role) {
-        this.role = role;
-        resetPlayer(player);
-        role.kit.forEach((item)-> {
-            player.getInventory().insertStack(item.copy());
-        });
-        final int[] i = {0};
-        role.armor.forEach((item)-> {
-            player.getInventory().armor.set(i[0], item.copy());
-            i[0]++;
-        });
+        setRole(role, RoleChangeModifier.RESET);
+    }
 
-        teleportToSpawn();
 
+
+    public void setRole(Role role, RoleChangeModifier mod) {
+        if (!mod.equals(RoleChangeModifier.KITONLY))
+            this.role = role;
+        if (role.equals(Role.OUTOFGAME)) {
+            mod = RoleChangeModifier.NONE;
+        }
+        if (mod.equals(RoleChangeModifier.RESET))
+            resetPlayer(player);
+
+        if (!mod.equals(RoleChangeModifier.NONE)) {
+            RoleChangeModifier finalMod = mod;
+            role.kit.forEach((item) -> {
+                if (duplicateChecker(finalMod,player.getInventory(), item.copy()))
+                    player.getInventory().insertStack(item.copy());
+            });
+
+            final int[] i = {0};
+
+            role.armor.forEach((item)-> {
+                if (finalMod.equals(RoleChangeModifier.MORPH) || finalMod.equals(RoleChangeModifier.KITONLY)) {
+                    if (duplicateChecker(finalMod,player.getInventory(), item.copy()))
+                        player.getInventory().insertStack(item.copy());
+                } else {
+                    if (duplicateChecker(finalMod,player.getInventory(), item.copy()))
+                        player.getInventory().armor.set(i[0], item.copy());
+                }
+                i[0]++;
+            });
+        }
+
+        if (mod.equals(RoleChangeModifier.RESET))
+            teleportToSpawn();
+
+    }
+
+    public boolean duplicateChecker(RoleChangeModifier mod, PlayerInventory pi, ItemStack i) {
+        if (mod != RoleChangeModifier.KITONLY) return true;
+        return !pi.armor.contains(i) && !pi.contains(i);
+    }
+
+    public enum RoleChangeModifier {
+        RESET,
+        MORPH,
+        KITONLY,
+        NONE
     }
 
 

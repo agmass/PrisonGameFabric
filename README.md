@@ -14,6 +14,15 @@ This will only cover the basics to get a working enviornment of a PrisonGameFabr
 An example prison is provided under `src/main/resources/data/prisongamefabric/(prisons/upgrades)`.
 Datapacks should use `prisons` and `upgrades`.
 
+### Before we start:
+Some things will require **Translations.** Place a file name after the language you want to use (most commonly `en_us.json`) under `lang/` in your datapack.
+
+Your language file should look like a json, like this:
+````
+{
+    "key": "value"
+} 
+````
 
 ### Prisons
 
@@ -36,28 +45,20 @@ Required Fields:
 
 ### Upgrade with map Specifics
 
-
-too lazy to do this right now, here's an extract from `antarctica.json`
-
-**EVERYTHING HERE EXCEPT FOR `upgrade` IS OPTIONAL**
-
-```{
-    "upgrade": "prisongamefabric:foodcourt",
-    "onLock": "prisongamefabric:ant_cafe_lock",
-    "onUnlock": "prisongamefabric:ant_cafe_unlock",
-    "safeZone": {
-        "zoneStart": {
-            "x": -43,
-            "y": 22,
-            "z": 62
-        },
-        "zoneEnd": {
-            "x": -29,
-            "y": 15,
-            "z": 76
-        }
-    }
-```
+- "upgrade": Identifier that leads to the main Upgrade data. View the section below to make an upgrade.
+- (Optional) "onLock": Identifier to a mcfunction called when this upgrade is locked on this map.
+- (Optional) "onUnlock": Ditto, for unlock.
+- (Optional) "safeZone": PrisonZone
 
 ### Upgrades
-will do later just look at `foodcourt.json`. this does not include `onGlobalLock` and `onGlobalUnlock` which are identifiers to .mcfunction files
+- "name": Translated String
+- "itemIcon": identifier, item (eg; `minecraft:dirt`)
+- "price": integer
+
+### Shop Signs
+You can make a custom Shop Sign people can use to buy things.
+
+- "name": string.
+- "price": integer,
+- "purchase": identifier to an mcfunction, run when the player has enough money.
+- "fail": identifier to an mcfunction, run when the player does not have enough money. Use `prisongamefabric:nothing` if you do not want anything to happen.

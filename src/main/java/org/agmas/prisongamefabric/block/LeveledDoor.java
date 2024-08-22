@@ -47,7 +47,7 @@ public class LeveledDoor extends DoorBlock implements PolymerBlock {
             return ActionResult.success(true);
         } else if (level != 0){
 
-            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, Text.translatable("reason.prisongamefabric.insufficientLevel", new Object[]{"1"}));
+            Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, Text.translatable("reason.prisongamefabric.insufficientLevel", new Object[]{level}));
         } else {
 
             Profile.useFeedback(player, Profile.PlayerFeedbackEnum.DENIED, Text.translatable("reason.prisongamefabric.lockdown", new Object[]{}));

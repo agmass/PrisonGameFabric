@@ -10,6 +10,7 @@ import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
@@ -20,6 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.GameMode;
 import org.agmas.prisongamefabric.PrisonGameFabric;
 import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.Schedule;
 import org.agmas.prisongamefabric.util.StateSaverAndLoader;
 import org.agmas.prisongamefabric.util.Tx;
@@ -47,6 +49,7 @@ public abstract class PlayerTick {
 
     @Shadow public abstract ServerWorld getServerWorld();
 
+    @Shadow @Final public MinecraftServer server;
     @Unique
     public BossBar playerSpecificBar = getServerWorld().getServer().getBossBarManager().add(Identifier.of("prisongamefabric", "playerbar"), Text.of("Player Bar"));
 
@@ -86,9 +89,20 @@ public abstract class PlayerTick {
                 }
                 profile.previousMapState = null;
             }
-            if (PrisonGameFabric.active.blackMarketExit.isInside(thisplayer)) {
-                thisplayer.requestTeleport(profile.blackMarketEnterancePoint.x,profile.blackMarketEnterancePoint.y,profile.blackMarketEnterancePoint.z);
+            if (thisplayer.isPartOfGame()) {
+                if (PrisonGameFabric.active.blackMarketExit.isInside(thisplayer)) {
+                    thisplayer.requestTeleport(profile.blackMarketEnterancePoint.x, profile.blackMarketEnterancePoint.y, profile.blackMarketEnterancePoint.z);
+                }
+                if (PrisonGameFabric.active.escapeZone.isInside(thisplayer)) {
+                    if (profile.role.equals(Role.PRISONER)) {
+                        server.getPlayerManager().getPlayerList().forEach((a)->{
+                            a.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("escape.player", thisplayer.getDisplayName())));
+                        });
+                        profile.setRole(Role.CRIMINAL, Profile.RoleChangeModifier.MORPH);
+                    }
+                }
             }
+            profile.barrelCooldown--;
             if (profile.respawnTime > 0) {
                 profile.respawnTime -= 1;
                 changeGameMode(GameMode.SPECTATOR);
@@ -106,6 +120,7 @@ public abstract class PlayerTick {
             } else {
                 networkHandler.sendPacket(BossBarS2CPacket.add(Schedule.scheduleBar));
             }
+
 
             if (profile.actionBarInvasion <= 0) {
                 Text finalWarden = Tx.tf(Formatting.RED, PrisonGameFabric.humanReadableWardenList);

@@ -59,7 +59,7 @@ public class ShopSign {
     }
 
     public void attemptButFail(ServerPlayerEntity spe) {
-        spe.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("purchase.fail").append(name + "!")));
+        spe.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("purchase.fail").append(" " + name + "!")));
         CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(failFunction).orElse(null);
         ServerCommandSource playerSpecificSource = PrisonGameFabric.commandSource.withEntity(spe);
         PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, playerSpecificSource);

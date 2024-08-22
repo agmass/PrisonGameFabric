@@ -12,6 +12,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
@@ -24,10 +25,14 @@ import org.agmas.prisongamefabric.util.Roles.Role.PositionInPower;
 import org.agmas.prisongamefabric.util.Roles.Role;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class RefillBlock extends Block implements PolymerBlock {
 
     public static final BooleanProperty OPEN = Properties.OPEN;
     public static final DirectionProperty FACING = Properties.FACING;
+
     public RefillBlock(Settings settings) {
         super(settings);
     }
@@ -40,20 +45,16 @@ public class RefillBlock extends Block implements PolymerBlock {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         Role role = Profile.getRole(player);
-        if (Profile.getRole(player).power!= Role.PositionInPower.GUARD&&Profile.getRole(player).power!=Role.PositionInPower.WARDEN) {
-            role = Role.GUARD;
+        Profile profile = Profile.getProfile(player);
+        if (profile.barrelCooldown <= 0) {
+            profile.barrelCooldown = 20*20;
+            if (Profile.getRole(player).power != Role.PositionInPower.GUARD && Profile.getRole(player).power != Role.PositionInPower.WARDEN) {
+                role = Role.GUARD;
+            }
+            profile.setRole(role, Profile.RoleChangeModifier.KITONLY);
+        } else {
+            player.sendMessage(Text.translatable("block.prisongamefabric.refillblock.cooldown", Math.round((float) profile.barrelCooldown /20)));
         }
-            role.kit.forEach((item)-> {
-                player.getInventory().remove((p)->{
-                    return item.getItem().equals(p.getItem());
-                },10000,player.getInventory());
-                player.getInventory().insertStack(item.copy());
-            });
-            final int[] i = {0};
-            role.armor.forEach((item)-> {
-                player.getInventory().armor.set(i[0], item);
-                i[0]++;
-            });
         return super.onUse(state, world, pos, player, hit);
     }
 

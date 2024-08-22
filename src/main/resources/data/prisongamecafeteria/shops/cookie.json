@@ -1,0 +1,6 @@
+{
+  "name": "Cookie",
+  "price": 5,
+  "purchase": "prisongamecafeteria:cookie",
+  "fail": "prisongamefabric:nothing"
+}

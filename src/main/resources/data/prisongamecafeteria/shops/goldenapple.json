@@ -1,0 +1,6 @@
+{
+  "name": "Golden Apple",
+  "price": 150,
+  "purchase": "prisongamecafeteria:goldenapple",
+  "fail": "prisongamefabric:nothing"
+}

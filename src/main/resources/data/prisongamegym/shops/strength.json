@@ -1,0 +1,6 @@
+{
+  "name": "Strength Potion",
+  "price": 120,
+  "purchase": "prisongamegym:strength",
+  "fail": "prisongamefabric:nothing"
+}

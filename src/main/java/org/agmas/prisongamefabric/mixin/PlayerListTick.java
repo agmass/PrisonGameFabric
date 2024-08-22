@@ -37,7 +37,7 @@ public abstract class PlayerListTick {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void injected(CallbackInfo ci) {
-        Text header = Text.literal("\nPrisonButBad -- Fabric\nInDev\n\n");
+        Text header = Text.literal("\nPrisonButBad -- Fabric\nInDev\n");
         HashMap<Role, ArrayList<PlayerEntity>> roleCount = new HashMap<>();
         getPlayerManager().getPlayerList().forEach((spe)->{
             Role role = Profile.getRole(spe);
@@ -53,11 +53,11 @@ public abstract class PlayerListTick {
 
         hasWardens = false;
         roleCount.forEach((role,count)->{
-            MutableText toAppend = Tx.tf(role.color, role.name + " (" + count.size() + ")").append("\n");
+            MutableText toAppend = Tx.tf(role.color, "\n"+role.name + " (" + count.size() + ")").append("\n");
             AtomicInteger i = new AtomicInteger();
             count.forEach((spe)->{
                 ServerPlayerEntity aspe = (ServerPlayerEntity) spe;
-                toAppend.append(Text.literal("\n").append(role.prefix).append(Tx.tf(role.backgroundColor, " " + spe.getName().getString() + " ").append(Tx.wrapInBrackets(Formatting.GRAY, Tx.tf(Formatting.GREEN, aspe.networkHandler.getLatency()+"ms")))));
+                toAppend.append(Text.literal("\n").append(role.prefix).append(Tx.tf(role.backgroundColor, " " + spe.getName().getString() + " ").append(Tx.wrapInBrackets(Formatting.GRAY, Tx.tf(getPingColor(aspe.networkHandler.getLatency()), aspe.networkHandler.getLatency()+"ms")))));
                 if (role.power==Role.PositionInPower.WARDEN) {
                     toAppend.append(Tx.tf(Formatting.DARK_RED, "\n❤" + Math.round(spe.getHealth())));
                     if (i.get() == 0) {
@@ -92,6 +92,17 @@ public abstract class PlayerListTick {
         getPlayerManager().getPlayerList().forEach((spe)->{
             spe.networkHandler.sendPacket(headerS2CPacket);
         });
+    }
+
+    @Unique
+    public Formatting getPingColor(int ping) {
+        if (ping > 600)
+            return Formatting.DARK_RED;
+        if (ping > 400)
+            return Formatting.RED;
+        if (ping > 200)
+            return Formatting.YELLOW;
+        return Formatting.GREEN;
     }
 
 }

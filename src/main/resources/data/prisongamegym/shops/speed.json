@@ -1,0 +1,6 @@
+{
+  "name": "Speed Potion",
+  "price": 120,
+  "purchase": "prisongamegym:speed",
+  "fail": "prisongamefabric:nothing"
+}

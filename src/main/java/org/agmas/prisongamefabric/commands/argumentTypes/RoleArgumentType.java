@@ -27,6 +27,7 @@ public class RoleArgumentType implements ArgumentType<Role> {
             "nurse", Role.NURSE,
             "prisoner", Role.PRISONER,
             "swat", Role.SWAT,
+            "criminal", Role.CRIMINAL,
             "out", Role.OUTOFGAME
     );
 
