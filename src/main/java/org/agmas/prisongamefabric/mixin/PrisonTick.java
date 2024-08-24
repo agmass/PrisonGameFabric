@@ -13,6 +13,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.UserCache;
 import org.agmas.prisongamefabric.PrisonGameFabric;
+import org.agmas.prisongamefabric.mapgame.microUis.MapsMicroUI;
 import org.agmas.prisongamefabric.util.Profile;
 import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.Tx;
@@ -37,6 +38,7 @@ public abstract class PrisonTick {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void injected(CallbackInfo ci) {
+        MapsMicroUI.cooldown--;
         PrisonGameFabric.active.getOnTick().orElse(new ArrayList<>()).forEach((i)->{
             CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(i).orElse(null);
             PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, PrisonGameFabric.commandSource);

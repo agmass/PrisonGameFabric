@@ -2,15 +2,23 @@ package org.agmas.prisongamefabric.prisons.shopSigns;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.command.CommandExecutionContext;
+import net.minecraft.command.ReturnValueConsumer;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.function.CommandFunction;
+import net.minecraft.server.function.MacroException;
+import net.minecraft.server.function.Procedure;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.profiler.Profiler;
 import org.agmas.prisongamefabric.PrisonGameFabric;
+import org.agmas.prisongamefabric.PrisonGameItems;
 import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
 import org.agmas.prisongamefabric.util.Tx;
 
@@ -52,10 +60,35 @@ public class ShopSign {
     public Identifier getFailFunction() {
         return failFunction;
     }
-    public void buy(ServerPlayerEntity spe) {
+    public boolean buy(ServerPlayerEntity spe) {
         CommandFunction<ServerCommandSource> function = PrisonGameFabric.serverInstance.getCommandFunctionManager().getFunction(successFunction).orElse(null);
         ServerCommandSource playerSpecificSource = PrisonGameFabric.commandSource.withEntity(spe);
-        PrisonGameFabric.serverInstance.getCommandFunctionManager().execute(function, playerSpecificSource);
+        return executeOrRefund(function, playerSpecificSource, spe);
+    }
+
+
+    public boolean executeOrRefund(CommandFunction<ServerCommandSource> function, ServerCommandSource source, ServerPlayerEntity spe) {
+        Profiler profiler = PrisonGameFabric.serverInstance.getProfiler();
+        profiler.push(() -> {
+            return "function " + String.valueOf(function.id());
+        });
+
+        try {
+            Procedure<ServerCommandSource> procedure = function.withMacroReplaced((NbtCompound)null, PrisonGameFabric.serverInstance.getCommandFunctionManager().getDispatcher());
+            CommandManager.callWithContext(source, (context) -> {
+                CommandExecutionContext.enqueueProcedureCall(context, procedure, source, ReturnValueConsumer.EMPTY);
+            });
+        } catch (MacroException var9) {
+        } catch (Exception var10) {
+            Exception exception = var10;
+            spe.sendMessage(Tx.tf(Formatting.RED,  exception.getMessage() + ". You should have been refunded."));
+            return false;
+        } finally {
+            profiler.pop();
+        }
+
+        return true;
+
     }
 
     public void attemptButFail(ServerPlayerEntity spe) {

@@ -80,12 +80,10 @@ public class PrisonGameFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Registry.register(Registries.ITEM_GROUP, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
 
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ResourceListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new UpgradesListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ShopsListener());
-
 
 
         PrisonGameBlocks.initalize();
@@ -93,7 +91,8 @@ public class PrisonGameFabric implements ModInitializer {
         PrisonGameItems.initalize();
 
         Commands.init();
-        Schedule.createSchedule();
+
+        Registry.register(Registries.ITEM_GROUP, CUSTOM_ITEM_GROUP_KEY, CUSTOM_ITEM_GROUP);
 
         ItemGroupEvents.modifyEntriesEvent(CUSTOM_ITEM_GROUP_KEY).register((me)->{
             me.add(PrisonGameItems.ONE_CARD);
@@ -111,6 +110,7 @@ public class PrisonGameFabric implements ModInitializer {
             me.add(PrisonGameBlocks.FOODCHEST);
         });
 
+        Schedule.createSchedule();
         ServerLifecycleEvents.SERVER_STARTED.register((a)->
         {
             serverInstance = a;

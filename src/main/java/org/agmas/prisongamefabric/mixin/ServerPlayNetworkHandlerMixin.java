@@ -9,9 +9,12 @@ import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
 import net.minecraft.server.filter.FilteredMessage;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Formatting;
 import org.agmas.prisongamefabric.PrisonGameFabric;
 import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Roles.Role;
+import org.agmas.prisongamefabric.util.Tx;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,6 +28,17 @@ public abstract class ServerPlayNetworkHandlerMixin {
 
 
     @Shadow public abstract ServerPlayerEntity getPlayer();
+
+    @Shadow public ServerPlayerEntity player;
+
+    @Inject(method = "handleDecoratedMessage", at = @At("HEAD"), cancellable = true)
+    private void cursor(SignedMessage message, CallbackInfo ci) {
+        Role role = Profile.getRole(player);
+        PrisonGameFabric.serverInstance.getPlayerManager().getPlayerList().forEach((plr) -> {
+            plr.sendMessage(role.prefix.copy().append(" ").append(Tx.ttf(role.secondaryColor, player.getName().copy()).append(Tx.tf(role.backgroundColor, ": ").append(Tx.tf(role.backgroundColor, message.getContent().getLiteralString())))));
+        });
+        ci.cancel();
+    }
 
     @Inject(method = "onPlayerMove", at = @At("HEAD"), cancellable = true)
     private void cursor(PlayerMoveC2SPacket packet, CallbackInfo ci) {

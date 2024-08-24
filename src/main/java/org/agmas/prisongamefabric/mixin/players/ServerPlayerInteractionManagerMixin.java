@@ -91,8 +91,9 @@ public abstract class ServerPlayerInteractionManagerMixin {
                          if (signBlockEntity.getFrontText().getMessage(2, false).getLiteralString().equals(ss.name)) {
                              Profile profile = Profile.getProfile(player);
                              if (profile.getMoney() >= ss.price) {
-                                 profile.setMoney(profile.getMoney()-ss.price);
-                                 ss.buy(player);
+                                 if (ss.buy(player)) {
+                                     profile.setMoney(profile.getMoney()-ss.price);
+                                 }
                              } else {
                                  ss.attemptButFail(player);
                              }

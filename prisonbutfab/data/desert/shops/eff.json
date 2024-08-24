@@ -1,0 +1,6 @@
+{
+  "name": "Efficiency 2",
+  "price": 400,
+  "purchase": "desert:dt_sign_efficiency",
+  "fail": "prisongamefabric:nothing"
+}

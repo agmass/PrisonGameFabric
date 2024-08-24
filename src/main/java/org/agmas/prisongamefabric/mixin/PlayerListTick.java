@@ -37,7 +37,7 @@ public abstract class PlayerListTick {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void injected(CallbackInfo ci) {
-        Text header = Text.literal("\nPrisonButBad -- Fabric\nInDev\n");
+        Text header = Tx.tf(Formatting.GOLD,"\nPrisonButBad -- Fabric\nOpen Beta v1.0.0\n").append(Tx.tf(Formatting.WHITE, "by agmas! [/credits]\n"));
         HashMap<Role, ArrayList<PlayerEntity>> roleCount = new HashMap<>();
         getPlayerManager().getPlayerList().forEach((spe)->{
             Role role = Profile.getRole(spe);
@@ -57,7 +57,7 @@ public abstract class PlayerListTick {
             AtomicInteger i = new AtomicInteger();
             count.forEach((spe)->{
                 ServerPlayerEntity aspe = (ServerPlayerEntity) spe;
-                toAppend.append(Text.literal("\n").append(role.prefix).append(Tx.tf(role.backgroundColor, " " + spe.getName().getString() + " ").append(Tx.wrapInBrackets(Formatting.GRAY, Tx.tf(getPingColor(aspe.networkHandler.getLatency()), aspe.networkHandler.getLatency()+"ms")))));
+                toAppend.append(Text.literal("\n").append(role.prefix).append(Tx.tf(role.secondaryColor, " " + spe.getName().getString() + " ").append(Tx.wrapInBrackets(Formatting.GRAY, Tx.tf(getPingColor(aspe.networkHandler.getLatency()), aspe.networkHandler.getLatency()+"ms")))));
                 if (role.power==Role.PositionInPower.WARDEN) {
                     toAppend.append(Tx.tf(Formatting.DARK_RED, "\n❤" + Math.round(spe.getHealth())));
                     if (i.get() == 0) {

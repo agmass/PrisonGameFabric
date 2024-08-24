@@ -8,15 +8,18 @@ import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.block.entity.StructureBlockBlockEntity;
+import net.minecraft.command.argument.RegistryEntryReferenceArgumentType;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.command.suggestion.SuggestionProviders;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.c2s.play.BookUpdateC2SPacket;
 import net.minecraft.network.packet.s2c.play.OpenWrittenBookS2CPacket;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -31,8 +34,7 @@ import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.Tx;
 import org.agmas.prisongamefabric.util.WardenProgress;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.server.command.CommandManager.*;
 
 public class Commands {
     public static void init() {
@@ -60,6 +62,22 @@ public class Commands {
                     return Commands.pluginsMessage(context.getSource());
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("credits").executes(
+                (context)->{
+
+                    context.getSource().sendMessage(Tx.tf(Formatting.WHITE, "developed and ran by agmas!"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.GOLD, "\n[BUILDING]\n"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.GRAY, "(HyperDesert)"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.YELLOW, "Lelmonverse"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.YELLOW, "__miny"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.DARK_AQUA, "\n[TRANSLATIONS]\n"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.AQUA, "Finnish - Sanan1010"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.AQUA, "German - __miny"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.AQUA, "Polish - Toniiid"));
+                    context.getSource().sendMessage(Tx.tf(Formatting.AQUA, "English, French, Lolcats - agmass"));
+                    return 1;
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("accept").executes(
                 (context)->{
                     if (context.getSource().getPlayer() instanceof ServerPlayerEntity spe) {
@@ -80,6 +98,18 @@ public class Commands {
                     return Commands.pluginsMessage(context.getSource());
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("superenchant").requires(serverCommandSource->serverCommandSource.hasPermissionLevel(2)).then(argument("enchant", RegistryEntryReferenceArgumentType.registryEntry(registryAccess, RegistryKeys.ENCHANTMENT)).then(argument("amount", IntegerArgumentType.integer()).executes(
+                (context)->{
+                    if (context.getSource().getEntity() instanceof ServerPlayerEntity spe) {
+                        if (!spe.getMainHandStack().getEnchantments().getEnchantments().contains(RegistryEntryReferenceArgumentType.getEnchantment(context, "enchant"))) {
+                            spe.getMainHandStack().addEnchantment(RegistryEntryReferenceArgumentType.getEnchantment(context, "enchant"), IntegerArgumentType.getInteger(context, "amount"));
+                        } else {
+                            throw new RuntimeException("You already have that enchant");
+                        }
+                    }
+                    return 1;
+                }
+        )))));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setmoney").requires(serverCommandSource->serverCommandSource.hasPermissionLevel(2)).then(argument("amount", IntegerArgumentType.integer()).executes(
                 (context)->{
                     if (context.getSource().getPlayer() instanceof ServerPlayerEntity spe) {

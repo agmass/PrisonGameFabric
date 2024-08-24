@@ -23,7 +23,24 @@
     {
       "upgrade": "prisongamefabric:gym",
       "onLock": "desert:dt_gym_lock",
-      "onUnlock": "desert:dt_gym_lock",
+      "onUnlock": "desert:dt_gym_unlock",
+      "safeZone": {
+        "zoneStart": {
+          "x": -1055,
+          "y": 20,
+          "z": -110
+        },
+        "zoneEnd": {
+          "x": -1075,
+          "y": 25,
+          "z": -85
+        }
+      }
+    },
+    {
+      "upgrade": "desert:library",
+      "onLock": "desert:dt_library_lock",
+      "onUnlock": "desert:dt_library_unlock",
       "safeZone": {
         "zoneStart": {
           "x": -1055,

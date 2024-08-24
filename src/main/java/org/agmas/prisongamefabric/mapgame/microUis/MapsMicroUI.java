@@ -28,12 +28,18 @@ public class MapsMicroUI extends MicroUi {
             mapRepresenter.set(DataComponentTypes.ITEM_NAME, Tx.tf(Formatting.GOLD, a.name));
             this.slot(loop.get(), mapRepresenter, (aa,b,c,d)->{
                 if (cooldown <= 0) {
-                    cooldown = 20*128;
+                    Profile prof = Profile.getProfile(spe);
+                    if (prof.getMoney() >= a.price) {
+                        cooldown = 20*128;
+                        aa.getInventory().armor.set(3, Profile.getProfile(aa).helmetItem);
+                        PrisonGameFabric.setActive(a, aa.getServer());
+                        aa.closeHandledScreen();
+                    } else {
+                        aa.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("purchase.fail").append(" ").append(a.name).append("!")));
 
-                    aa.getInventory().armor.set(3, Profile.getProfile(aa).helmetItem);
-                    PrisonGameFabric.setActive(a, aa.getServer());
+                    }
                 } else {
-                    aa.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("map.cooldown", cooldown)));
+                    aa.sendMessage(Tx.ttf(Formatting.RED, Text.translatable("map.cooldown", cooldown/20)));
                 }
             });
             loop.getAndIncrement();
