@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:paper"
+        },
+        {
+            "item": "prisongamefabric:keycardleveltwo"
+        },
+        {
+            "item": "minecraft:paper"
+        }
+    ],
+    "result": {
+        "id": "prisongamefabric:keycardlevelthree",
+        "count": 1
+    }
+}

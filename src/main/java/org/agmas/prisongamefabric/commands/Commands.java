@@ -1,5 +1,6 @@
 package org.agmas.prisongamefabric.commands;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.impl.util.log.Log;
@@ -59,11 +60,35 @@ public class Commands {
                     return Commands.pluginsMessage(context.getSource());
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("accept").executes(
+                (context)->{
+                    if (context.getSource().getPlayer() instanceof ServerPlayerEntity spe) {
+                        Profile p = Profile.getProfile(spe);
+                        if (p.proposedRole != null) {
+                            p.setRole(p.proposedRole);
+                            spe.getServer().getPlayerManager().getPlayerList().forEach((pl)->{
+                                pl.sendMessage(Tx.ttf(p.proposedRole.color,Text.translatable("promotion.broadcast", spe.getName(),p.proposedRole.name)));
+                            });
+                            p.proposedRole = null;
+                        }
+                    }
+                    return 1;
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("pl").executes(
                 (context)->{
                     return Commands.pluginsMessage(context.getSource());
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setmoney").requires(serverCommandSource->serverCommandSource.hasPermissionLevel(2)).then(argument("amount", IntegerArgumentType.integer()).executes(
+                (context)->{
+                    if (context.getSource().getPlayer() instanceof ServerPlayerEntity spe) {
+                        Profile p = Profile.getProfile(spe);
+                        p.setMoney(IntegerArgumentType.getInteger(context, "amount"));
+                    }
+                    return 1;
+                }
+        ))));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("mods").executes(
                 (context)->{
                     context.getSource().sendError(Text.of("No, fabric doesn't have /mods either."));

@@ -38,7 +38,7 @@ public class LumberjackAxe extends Item implements PolymerItem, MiningItem {
     public void onMine(PlayerEntity p, BlockState b, World w, BlockPos pos) {
 
         Profile profile = Profile.getProfile(p);
-        profile.setMoney(profile.getMoney()+6);
+        profile.addMoney(6,true);
         MiningItem.super.onMine(p,b,w,pos);
     }
 

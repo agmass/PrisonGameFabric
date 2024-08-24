@@ -11,7 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -22,6 +24,8 @@ import org.agmas.prisongamefabric.PrisonGameFabric;
 import org.agmas.prisongamefabric.items.Keycard;
 import org.agmas.prisongamefabric.prisons.PrisonLocation;
 import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Roles.Role;
+import org.agmas.prisongamefabric.util.Tx;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -35,9 +39,13 @@ public class BlackMarketCauldron extends Block implements PolymerBlock {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         Profile profile = Profile.getProfile(player);
-        profile.blackMarketEnterancePoint = new PrisonLocation((float)player.getX(),(float)player.getY(),(float) player.getZ(), Optional.of(-player.getYaw()), Optional.of(-player.getPitch()));
-        player.requestTeleport(PrisonGameFabric.active.blackMarketTeleport.x,PrisonGameFabric.active.blackMarketTeleport.y,PrisonGameFabric.active.blackMarketTeleport.z);
-        player.playSound(SoundEvents.ENTITY_PLAYER_SWIM);
+        if (!profile.role.power.equals(Role.PositionInPower.GUARD)) {
+            profile.blackMarketEnterancePoint = new PrisonLocation((float) player.getX(), (float) player.getY(), (float) player.getZ(), Optional.of(-player.getYaw()), Optional.of(-player.getPitch()));
+            player.requestTeleport(PrisonGameFabric.active.blackMarketTeleport.x, PrisonGameFabric.active.blackMarketTeleport.y, PrisonGameFabric.active.blackMarketTeleport.z);
+            player.playSound(SoundEvents.ENTITY_PLAYER_SWIM);
+        } else {
+            player.sendMessage(Tx.ttf(Formatting.RED,Text.translatable("error.isGuard")));
+        }
         return ActionResult.PASS;
     }
     @Override

@@ -44,5 +44,13 @@
   "item.prisongamefabric.keycardleveltwo": "Keycard (Level 2)",
   "item.prisongamefabric.keycardlevelone": "Keycard (Level 1)",
   "escape.player": "%s escaped the prison!",
-  "block.prisongamefabric.refillblock.cooldown": "Barrel on cooldown! Refilling in %s"
+  "block.prisongamefabric.refillblock.cooldown": "Barrel on cooldown! Refilling in %s",
+  "error.isGuard": "Guards can't do that!",
+  "map.cooldown": "Map switch is on cooldown for %s!",
+  "promotion.sent": "Sent a promotion to %s!",
+  "promotion.recieved": "The warden has invited you to be a %s! Use /accept to accept.",
+  "promotion.broadcast": "%s was promoted to a %s!",
+  "error.noPlayersToHire": "There is no one available to hire.",
+  "prisons.new": "New Prison!",
+  "promotion.fired": "%s was fired by the warden!"
 }

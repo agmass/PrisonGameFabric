@@ -4,6 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.mapgame.sprites.Hotbar;
+import org.agmas.prisongamefabric.mapgame.sprites.icons.HireIcon;
 import org.agmas.prisongamefabric.mapgame.sprites.icons.Icon;
 import org.agmas.prisongamefabric.mapgame.sprites.icons.MapsIcon;
 import org.agmas.prisongamefabric.mapgame.sprites.icons.UpgradesIcon;
@@ -14,6 +15,7 @@ public class Wallpaper extends Scene {
     Hotbar hotbar;
     MapsIcon mapsIcon;
     UpgradesIcon upgradesIcon;
+    HireIcon hireicon;
     ArrayList<Icon> selectableIcons = new ArrayList<>();
     public Wallpaper() {
         super();
@@ -30,6 +32,11 @@ public class Wallpaper extends Scene {
         selectableIcons.add(upgradesIcon);
         upgradesIcon.x = 3;
         upgradesIcon.y = 3+mapsIcon.height;
+        hireicon = new HireIcon(this);
+        sprites.add(hireicon);
+        selectableIcons.add(hireicon);
+        hireicon.x = 3+mapsIcon.width;
+        hireicon.y = 3;
         mouseCursor.x = 0;
         mouseCursor.y = 0;
         sprites.add(mouseCursor);

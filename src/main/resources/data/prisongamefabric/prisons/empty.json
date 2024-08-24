@@ -1,0 +1,44 @@
+{
+  "name": "AutoDisablePrison",
+  "itemIcon": "minecraft:steak",
+  "price": 0,
+  "upgrades": [],
+  "cellLocations": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "yaw": 0,
+      "pitch": 0
+    }
+  ],
+  "wardenSpawn": { "x": 0, "y": 0, "z": 0, "yaw": 0 },
+  "guardSpawn": { "x": 0, "y": 0, "z": 0 },
+  "computerTeleport": { "x": 0, "y": 0, "z": 0, "yaw": 0 },
+  "blackMarketTeleport": {"x":0, "y": 0, "z": 0},
+  "blackMarketExit": {
+    "zoneStart": {
+      "x": -999,
+      "y": -999,
+      "z": -999
+    },
+    "zoneEnd": {
+      "x": -999,
+      "y": -999,
+      "z": -999
+    }
+  },
+  "escapeZone": {
+    "zoneStart": {
+      "x": -999,
+      "y": -999,
+      "z": -999
+    },
+    "zoneEnd": {
+      "x": -999,
+      "y": -999,
+      "z": -999
+    }
+  },
+  "onTick": []
+}

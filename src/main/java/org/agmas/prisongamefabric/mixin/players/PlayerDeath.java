@@ -35,15 +35,9 @@ public abstract class PlayerDeath {
 
 
                 Text text = getDamageTracker().getDeathMessage();
-                spe.networkHandler.send(new DeathMessageS2CPacket(spe.getId(), text), PacketCallbacks.of(() -> {
-                    String string = text.asTruncatedString(256);
-                    Text text2 = Text.translatable("death.attack.message_too_long", new Object[]{Text.literal(string).formatted(Formatting.YELLOW)});
-                    Text text3 = Text.translatable("death.attack.even_more_magic", new Object[]{spe.getDisplayName()}).styled((style) -> {
-                        return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, text2));
-                    });
-                    return new DeathMessageS2CPacket(spe.getId(), text3);
-                }));
-
+                spe.getServer().getPlayerManager().getPlayerList().forEach((pl)->{
+                    pl.sendMessage(Tx.ttf(Profile.getProfile(spe).role.backgroundColor, text.copy()));
+                });
                 if (PrisonGameFabric.progress.gameEndingWarden != null) {
                     if (PrisonGameFabric.progress.gameEndingWarden.equals(spe.getUuid())) {
                         PrisonGameFabric.handleDeadWarden(spe);

@@ -13,6 +13,7 @@ import java.util.Optional;
 
 public class Prison {
     public final String name;
+    public final Integer price;
     public final Identifier itemIcon;
     public final Item itemIconAsItem;
     public final List<PrisonLocation> cellLocations;
@@ -27,6 +28,7 @@ public class Prison {
 
     public static final Codec<Prison> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("name").forGetter(Prison::getName),
+            Codec.INT.fieldOf("price").forGetter(Prison::getPrice),
             Identifier.CODEC.fieldOf("itemIcon").forGetter(Prison::getItemIcon),
             PrisonLocation.CODEC.listOf().fieldOf("cellLocations").forGetter(Prison::getCellLocations),
             UpgradeWithMapSpecifics.CODEC.listOf().fieldOf("upgrades").forGetter(Prison::getUpgrades),
@@ -40,8 +42,9 @@ public class Prison {
             // Up to 16 fields can be declared here
     ).apply(instance, Prison::new));
 
-    public Prison(String name, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, PrisonLocation blackMarketTeleport, PrisonZone escapeZone, PrisonZone blackMarketExit, Optional<List<Identifier>> onTick) {
+    public Prison(String name, Integer price, Identifier itemIcon, List<PrisonLocation> spawnLocation, List<UpgradeWithMapSpecifics> upgrades, PrisonLocation wardenSpawn, PrisonLocation guardSpawn, PrisonLocation computerTeleport, PrisonLocation blackMarketTeleport, PrisonZone escapeZone, PrisonZone blackMarketExit, Optional<List<Identifier>> onTick) {
         this.name = name;
+        this.price = price;
         this.itemIcon = itemIcon;
         this.itemIconAsItem = Registries.ITEM.get(itemIcon);
         this.cellLocations = spawnLocation;
@@ -57,6 +60,10 @@ public class Prison {
 
     public PrisonZone getEscapeZone() {
         return escapeZone;
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 
     public Optional<List<Identifier>> getOnTick() {

@@ -47,6 +47,11 @@ public class ResourceListener extends JsonDataLoader implements IdentifiableReso
         Log.info(LogCategory.GENERAL,"Loading " + prepared.size() + " Prisons");
         PrisonGameFabric.availablePrisons.clear();
         prepared.forEach((id, json)->{
+            if (prepared.size() > 1) {
+                if (id.getNamespace().equalsIgnoreCase("prisongamefabric")) {
+                    return;
+                }
+            }
             try {
 
                 DataResult<Prison> result = Prison.CODEC.parse(JsonOps.INSTANCE, json);
@@ -59,6 +64,15 @@ public class ResourceListener extends JsonDataLoader implements IdentifiableReso
                 Log.error(LogCategory.GENERAL,exception.getMessage());
             }
         });
+
+        if (PrisonGameFabric.active != null) {
+            PrisonGameFabric.availablePrisons.forEach((p) -> {
+
+                if (p.name.equalsIgnoreCase(PrisonGameFabric.active.name)) {
+                    PrisonGameFabric.active = p;
+                }
+            });
+        }
 
     }
 

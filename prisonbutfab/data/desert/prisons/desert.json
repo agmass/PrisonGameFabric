@@ -1,0 +1,150 @@
+{
+  "name": "DesertTech",
+  "itemIcon": "minecraft:sand",
+  "price": 2500,
+  "upgrades": [
+    {
+      "upgrade": "prisongamefabric:foodcourt",
+      "onLock": "desert:dt_cafe_lock",
+      "onUnlock": "desert:dt_cafe_unlock",
+      "safeZone": {
+        "zoneStart": {
+          "x": -1062,
+          "y": 20,
+          "z": -140
+        },
+        "zoneEnd": {
+          "x": -1054,
+          "y": 26,
+          "z": -111
+        }
+      }
+    },
+    {
+      "upgrade": "prisongamefabric:gym",
+      "onLock": "desert:dt_gym_lock",
+      "onUnlock": "desert:dt_gym_lock",
+      "safeZone": {
+        "zoneStart": {
+          "x": -1055,
+          "y": 20,
+          "z": -110
+        },
+        "zoneEnd": {
+          "x": -1075,
+          "y": 25,
+          "z": -85
+        }
+      }
+    }
+  ],
+  "cellLocations": [
+    {
+      "x": -1089.5,
+      "y":22,
+      "z": -90.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1089.5,
+      "y":22,
+      "z": -96.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1089.5,
+      "y":22,
+      "z": -102.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1089.5,
+      "y":-108.5,
+      "z": -102.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1089.5,
+      "y":22,
+      "z": -114.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1089.5,
+      "y":22,
+      "z": -120.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+
+    {
+      "x": -1077.5,
+      "y":22,
+      "z": -90.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1077.5,
+      "y":22,
+      "z": -96.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1077.5,
+      "y":-108.5,
+      "z": -102.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1077.5,
+      "y":22,
+      "z": -114.5,
+      "yaw": -90,
+      "pitch": 0
+    },
+    {
+      "x": -1077.5,
+      "y":22,
+      "z": -120.5,
+      "yaw": -90,
+      "pitch": 0
+    }
+  ],
+  "wardenSpawn": { "x": -1072.5, "y": 32, "z": -99, "yaw": 90 },
+  "guardSpawn": { "x": -1066.5, "y": 32, "z": -108 },
+  "computerTeleport": { "x": -1072.5, "y": 32.06250, "z": -99.5, "yaw": 90 },
+  "blackMarketTeleport": {"x": 107.5, "y": 63.5, "z": 156.5},
+  "blackMarketExit": {
+    "zoneStart": {
+      "x": 105,
+      "y": 70,
+      "z": 158
+    },
+    "zoneEnd": {
+      "x": 109,
+      "y": 67,
+      "z": 155
+    }
+  },
+  "escapeZone": {
+    "zoneStart": {
+      "x": -5,
+      "y": 34,
+      "z": 195
+    },
+    "zoneEnd": {
+      "x": 24,
+      "y": 12,
+      "z": 243
+    }
+  },
+  "onTick": []
+}

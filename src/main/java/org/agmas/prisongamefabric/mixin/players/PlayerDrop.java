@@ -8,6 +8,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameMode;
 import org.agmas.prisongamefabric.items.jobItems.MiningItem;
+import org.agmas.prisongamefabric.util.Profile;
+import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.StateSaverAndLoader;
 import org.agmas.prisongamefabric.util.Tx;
 import org.spongepowered.asm.mixin.Final;
@@ -31,7 +33,7 @@ public abstract class PlayerDrop {
 
     @Inject(method = "dropItem", at = @At("HEAD"), cancellable = true)
     private void injected(ItemStack stack, boolean throwRandomly, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> cir) {
-        if (stack.getItem() instanceof MiningItem mi) {
+        if (stack.getItem() instanceof MiningItem mi || Profile.getRole((ServerPlayerEntity)(Object)this).power.equals(Role.PositionInPower.WARDEN)) {
             cir.setReturnValue(null);
             cir.cancel();
         }

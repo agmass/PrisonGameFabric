@@ -31,6 +31,7 @@ public class Profile {
     public MapState previousMapState=null;
     public boolean isInScene = false;
     public Role role = Role.PRISONER;
+    public Role proposedRole = null;
     public PlayerEntity player;
     public ItemStack helmetItem=ItemStack.EMPTY;
     public PrisonLocation blackMarketEnterancePoint =null;
@@ -79,6 +80,7 @@ public class Profile {
 
     public void setRole(Role role) {
         setRole(role, RoleChangeModifier.RESET);
+        proposedRole = null;
     }
 
 
@@ -130,6 +132,17 @@ public class Profile {
         NONE
     }
 
+    public void addMoney(double money, boolean giveToWarden) {
+        if (role.power== Role.PositionInPower.WARDEN) {
+            PrisonGameFabric.progress.funds += money;
+        } else {
+            StateSaverAndLoader.PlayerData pd = StateSaverAndLoader.getPlayerState(player);
+            pd.money += money;
+            if (giveToWarden && Profile.getRole(player).power!= Role.PositionInPower.PRISONLESS) {
+                PrisonGameFabric.progress.funds += money/4;
+            }
+        }
+    }
 
     public void setMoney(double money) {
         if (role.power== Role.PositionInPower.WARDEN) {

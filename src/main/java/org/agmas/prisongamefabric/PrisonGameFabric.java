@@ -99,6 +99,8 @@ public class PrisonGameFabric implements ModInitializer {
             me.add(PrisonGameItems.ONE_CARD);
             me.add(PrisonGameItems.TWO_CARD);
             me.add(PrisonGameItems.THREE_CARD);
+            me.add(PrisonGameItems.FUNNYSUGAR);
+            me.add(PrisonGameItems.RIOTSHIELD);
             me.add(PrisonGameBlocks.ZERO_DOOR);
             me.add(PrisonGameBlocks.ONE_DOOR);
             me.add(PrisonGameBlocks.TWO_DOOR);
@@ -106,6 +108,7 @@ public class PrisonGameFabric implements ModInitializer {
             me.add(PrisonGameBlocks.REFILLBLOCK);
             me.add(PrisonGameBlocks.POOPBLOCK);
             me.add(PrisonGameBlocks.BLACKMARKETCAULDRON);
+            me.add(PrisonGameBlocks.FOODCHEST);
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register((a)->
@@ -121,6 +124,7 @@ public class PrisonGameFabric implements ModInitializer {
             if (a.player != null) {
                 Profile p = new Profile(a.player);
                 PlayerProfiles.put(a.player.getUuid(), p);
+                a.player.unlockRecipes(List.of(new Identifier[]{Identifier.of("prisongamefabric", "pbf_paper"),Identifier.of("prisongamefabric", "pbf_levelthree"),Identifier.of("prisongamefabric", "pbf_leveltwo")}));
             }
         });
 
@@ -152,6 +156,11 @@ public class PrisonGameFabric implements ModInitializer {
 
     public static void setActive(Prison active, MinecraftServer s) {
         PrisonGameFabric.active = active;
+        s.getPlayerManager().getPlayerList().forEach((serverPlayerEntity) -> {
+            serverPlayerEntity.networkHandler.sendPacket(new TitleS2CPacket(Tx.ttf(Formatting.GOLD, Text.translatable("prisons.new"))));
+            serverPlayerEntity.networkHandler.sendPacket(new SubtitleS2CPacket(Tx.tf(Formatting.GREEN, active.getName())));
+            Profile.getProfile(serverPlayerEntity).teleportToSpawn();
+        });
         active.upgrades.forEach((u)->{
             if (!progress.upgrades.contains(availablePrisonUpgrades.get(u.upgrade))) {
                 u.lock(false);

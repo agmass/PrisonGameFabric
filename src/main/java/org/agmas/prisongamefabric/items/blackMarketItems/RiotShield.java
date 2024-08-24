@@ -4,10 +4,13 @@ import eu.pb4.polymer.core.api.item.PolymerItem;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.BannerPatternsComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +22,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypeFilter;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,6 +56,18 @@ public class RiotShield extends ShieldItem implements PolymerItem {
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        if (user instanceof PlayerEntity p) {
+            if (p.getItemCooldownManager().getCooldownProgress(stack.getItem(), 0) >= 0.5f) {
+                world.getOtherEntities(p, p.getBoundingBox().expand(0.5), (player)->{return true;}).forEach((player -> {
+                    if (player.isLiving()) {
+                        player.damage(p.getDamageSources().playerAttack(p), 4);
+                        player.timeUntilRegen = 0;
+                    }
+
+
+                }));
+            }
+        }
         if (Math.random()<=0.1)
             stack.damage(1, user, EquipmentSlot.MAINHAND);
         super.usageTick(world, user, stack, remainingUseTicks);

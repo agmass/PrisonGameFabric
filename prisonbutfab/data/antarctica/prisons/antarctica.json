@@ -1,6 +1,7 @@
 {
   "name": "Antarctic Penitentiary",
   "itemIcon": "minecraft:iron_sword",
+  "price": 0,
   "upgrades": [
     {
       "upgrade": "prisongamefabric:foodcourt",

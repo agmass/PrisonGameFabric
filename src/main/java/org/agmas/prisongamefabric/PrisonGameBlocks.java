@@ -13,10 +13,7 @@ import net.minecraft.item.SignItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.agmas.prisongamefabric.block.BlackMarketCauldron;
-import org.agmas.prisongamefabric.block.LeveledDoor;
-import org.agmas.prisongamefabric.block.RefillBlock;
-import org.agmas.prisongamefabric.block.RegenerativeBlock;
+import org.agmas.prisongamefabric.block.*;
 import org.agmas.prisongamefabric.prisons.upgrades.PrisonUpgrade;
 import org.agmas.prisongamefabric.util.StateSaverAndLoader;
 
@@ -32,6 +29,7 @@ public class PrisonGameBlocks {
     public static final Block REFILLBLOCK = new RefillBlock(AbstractBlock.Settings.create());
     public static final Block BLACKMARKETCAULDRON = new BlackMarketCauldron();
     public static final Block POOPBLOCK = new RegenerativeBlock(Blocks.COARSE_DIRT, 80);
+    public static final Block FOODCHEST = new FoodCourtChest();
 
 
     public static void initalize() {
@@ -42,6 +40,7 @@ public class PrisonGameBlocks {
         Registry.register(Registries.BLOCK, Identifier.of("prisongamefabric", "refill"), REFILLBLOCK);
         Registry.register(Registries.BLOCK, Identifier.of("prisongamefabric", "poop"), POOPBLOCK);
         Registry.register(Registries.BLOCK, Identifier.of("prisongamefabric", "blackmarketcauldron"), BLACKMARKETCAULDRON);
+        Registry.register(Registries.BLOCK, Identifier.of("prisongamefabric", "foodchest"), FOODCHEST);
 
     }
 
@@ -54,5 +53,6 @@ public class PrisonGameBlocks {
         Registry.register(Registries.ITEM, Identifier.of("prisongamefabric", "refill"), new PolymerBlockItem(REFILLBLOCK, new Item.Settings(), Items.BARREL));
         Registry.register(Registries.ITEM, Identifier.of("prisongamefabric", "poop"), new PolymerBlockItem(POOPBLOCK, new Item.Settings(), Items.COARSE_DIRT));
         Registry.register(Registries.ITEM, Identifier.of("prisongamefabric", "blackmarketcauldron"), new PolymerBlockItem(BLACKMARKETCAULDRON, new Item.Settings(), Items.CAULDRON));
+        Registry.register(Registries.ITEM, Identifier.of("prisongamefabric", "foodchest"), new PolymerBlockItem(FOODCHEST, new Item.Settings(), Items.TRAPPED_CHEST));
     }
 }
