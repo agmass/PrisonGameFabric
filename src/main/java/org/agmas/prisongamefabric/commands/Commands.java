@@ -125,19 +125,6 @@ public class Commands {
                     return 1;
                 }
         )));
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setrole")
-                .then(argument("role", RoleArgumentType.role()).executes(context -> {
-
-                    final Role value = RoleArgumentType.getRole("role", context);
-                    context.getSource().sendFeedback(() -> net.minecraft.text.Text.literal(context.getSource().getName() + " set role to " + value.name), true);
-                    if (context.getSource().isExecutedByPlayer()) {
-                        Profile.getProfile(context.getSource().getPlayer()).setRole(value);
-                    }
-                    return 1;
-                }))));
-        ArgumentTypeRegistry.registerArgumentType(
-                Identifier.of("minecraft", "role"),
-                RoleArgumentType.class, ConstantArgumentSerializer.of(RoleArgumentType::role));
     }
 
     public static int pluginsMessage(ServerCommandSource source) {
