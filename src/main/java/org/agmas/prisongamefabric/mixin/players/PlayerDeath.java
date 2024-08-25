@@ -30,6 +30,8 @@ public abstract class PlayerDeath {
         if (health <= 0) {
             if ((LivingEntity)(Object)this instanceof ServerPlayerEntity spe) {
                 Profile profile = Profile.getProfile(spe);
+                if (!profile.role.power.equals(Role.PositionInPower.WARDEN))
+                    spe.getInventory().dropAll();
                 profile.respawnTime = 20*5;
                 Profile.resetPlayer(spe);
 

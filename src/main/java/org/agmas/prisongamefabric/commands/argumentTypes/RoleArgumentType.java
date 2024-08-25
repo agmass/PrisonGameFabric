@@ -21,7 +21,7 @@ public class RoleArgumentType implements ArgumentType<Role> {
         return new RoleArgumentType();
     }
 
-    private static final Map<String,Role> ROLE_MAP = Map.of(
+    public static final Map<String,Role> ROLE_MAP = Map.of(
             "warden", Role.WARDEN,
             "guard", Role.GUARD,
             "nurse", Role.NURSE,

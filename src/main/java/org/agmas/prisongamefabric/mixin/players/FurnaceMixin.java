@@ -3,6 +3,7 @@ package org.agmas.prisongamefabric.mixin.players;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
@@ -22,8 +23,8 @@ public class FurnaceMixin {
 
         if (player.getMainHandStack().getItem().equals(Items.COD)) {
             player.getMainHandStack().setCount(player.getMainHandStack().getCount()-1);
-            Profile.getProfile(player).addMoney(0.5, true);
-            player.playSound(SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, 1, 1);
+            Profile.getProfile(player).addMoney(1.25, true);
+            world.playSound((PlayerEntity)null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, SoundCategory.MASTER, 1f, 1f);
         }
         if (!player.getAbilities().allowModifyWorld) {
             cir.setReturnValue(ActionResult.FAIL);

@@ -1,6 +1,7 @@
 package org.agmas.prisongamefabric.commands;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.impl.util.log.Log;
@@ -57,6 +58,14 @@ public class Commands {
             context.getSource().sendMessage(Tx.tf(Formatting.GRAY, "------").append(Tx.tf(Formatting.RED, "\nWelcome, Warden!\nAs the warden, you have two main tasks: Upgrade the prison, and survive.\nSurvival is.. self explanatory. You do NOT keep your money from when you weren't a warden! Instead, you have warden funds. Warden funds are earned like normal money, but when *ANYONE* earns money, you get a 20% copy of their money.").append(Tx.tf(Formatting.GRAY, "\n------"))));
             return  1;
         }))));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("resign").executes(
+                (context)->{
+                    if (context.getSource().getPlayer() instanceof ServerPlayerEntity spe) {
+                        Profile.getProfile(spe).setRole(Role.PRISONER, Profile.RoleChangeModifier.RESET);
+                    }
+                    return 1;
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("plugins").executes(
                 (context)->{
                     return Commands.pluginsMessage(context.getSource());
@@ -125,6 +134,16 @@ public class Commands {
                     return 1;
                 }
         )));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("setrole").requires((serverCommandSource)->serverCommandSource.hasPermissionLevel(2))
+                .then(argument("role", StringArgumentType.string()).executes(context -> {
+
+                    final Role value = RoleArgumentType.ROLE_MAP.get(StringArgumentType.getString(context, "role"));
+                    context.getSource().sendFeedback(() -> net.minecraft.text.Text.literal(context.getSource().getName() + " set role to " + value.name), true);
+                    if (context.getSource().isExecutedByPlayer()) {
+                        Profile.getProfile(context.getSource().getPlayer()).setRole(value);
+                    }
+                    return 1;
+                }))));
     }
 
     public static int pluginsMessage(ServerCommandSource source) {

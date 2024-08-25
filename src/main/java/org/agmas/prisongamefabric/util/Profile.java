@@ -54,6 +54,12 @@ public class Profile {
         player.getHungerManager().setSaturationLevel(8);
         player.getHungerManager().setExhaustion(0);
         player.clearStatusEffects();
+        Profile p = getProfile(player);
+        if (p != null) {
+            if (p.role.equals(Role.CRIMINAL)) {
+                p.setRole(Role.PRISONER);
+            }
+        }
     }
 
     public void teleportToSpawn() {

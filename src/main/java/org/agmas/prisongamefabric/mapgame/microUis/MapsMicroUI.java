@@ -26,8 +26,11 @@ public class MapsMicroUI extends MicroUi {
         PrisonGameFabric.availablePrisons.forEach((a)->{
             ItemStack mapRepresenter = a.itemIconAsItem.getDefaultStack();
             mapRepresenter.set(DataComponentTypes.ITEM_NAME, Tx.tf(Formatting.GOLD, a.name));
+            ArrayList<Text> finalD = new ArrayList<>();
+            finalD.add(Tx.ttf(Formatting.GRAY, Text.translatable("upgrade.price").append(" ")).append(Tx.tf(Formatting.GREEN, a.price + "$")));
+            mapRepresenter.set(DataComponentTypes.LORE, new LoreComponent(finalD,finalD));
             this.slot(loop.get(), mapRepresenter, (aa,b,c,d)->{
-                if (cooldown <= 0) {
+                if (cooldown <= 0 && !a.equals(PrisonGameFabric.active)) {
                     Profile prof = Profile.getProfile(spe);
                     if (prof.getMoney() >= a.price) {
                         cooldown = 20*128;

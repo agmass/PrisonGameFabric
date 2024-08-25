@@ -44,7 +44,7 @@ public class ShovellingShovel extends Item implements PolymerItem, MiningItem {
     public void onMine(PlayerEntity p, BlockState b, World w, BlockPos pos) {
 
         Profile profile = Profile.getProfile(p);
-        profile.addMoney(2,true);
+        profile.addMoney(4,true);
         MiningItem.super.onMine(p,b,w,pos);
     }
 

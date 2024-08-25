@@ -1,9 +1,12 @@
 package org.agmas.prisongamefabric.util.Roles;
 
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.component.type.UnbreakableComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.Potions;
 import org.agmas.prisongamefabric.PrisonGameItems;
 
 import java.util.ArrayList;
@@ -25,6 +28,9 @@ public class KitItems {
         nurseItems.add(net.minecraft.item.Items.STONE_SWORD.getDefaultStack());
         nurseItems.add(Items.COOKED_BEEF.getDefaultStack().copyWithCount(24));
         nurseItems.add(Items.GOLDEN_APPLE.getDefaultStack().copyWithCount(2));
+        ItemStack i = PrisonGameItems.FOREVERPOTION.getDefaultStack();
+        i.set(DataComponentTypes.POTION_CONTENTS, new PotionContentsComponent(Potions.HEALING));
+        nurseItems.add(i);
         nurseItems.add(PrisonGameItems.ONE_CARD.getDefaultStack());
         return makeUnbreakable(nurseItems);
     }

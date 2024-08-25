@@ -37,7 +37,7 @@ public abstract class PlayerListTick {
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void injected(CallbackInfo ci) {
-        Text header = Tx.tf(Formatting.GOLD,"\nPrisonButBad -- Fabric\nOpen Beta v1.0.0\n").append(Tx.tf(Formatting.WHITE, "by agmas! [/credits]\n"));
+        Text header = Tx.tf(Formatting.GOLD,"\nPrisonButBad -- Fabric\nOpen Beta v1.1.1\n").append(Tx.tf(Formatting.WHITE, "by agmas! [/credits]\n"));
         HashMap<Role, ArrayList<PlayerEntity>> roleCount = new HashMap<>();
         getPlayerManager().getPlayerList().forEach((spe)->{
             Role role = Profile.getRole(spe);

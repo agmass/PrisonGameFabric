@@ -30,9 +30,6 @@ public class SelectRoleMicroUI extends MicroUi {
             if (r.equals(Role.SWAT) && !PrisonGameFabric.progress.upgrades.contains(PrisonGameFabric.availablePrisonUpgrades.get(Identifier.of("prisongamefabric", "swat")))) {
                 return;
             }
-            if (r.power.powerful == Profile.getProfile(spe).role.power.powerful) {
-                return;
-            }
             if (r.power!= Role.PositionInPower.PRISONLESS && r.power!= Role.PositionInPower.WARDEN) {
                 ItemStack helmet = Items.LEATHER_CHESTPLATE.getDefaultStack();
                 helmet.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(r.color.getColorValue(), false));
@@ -51,7 +48,7 @@ public class SelectRoleMicroUI extends MicroUi {
                             if (targetProfile.role.power.powerful) {
                                 targetProfile.setRole(Role.PRISONER);
                                 spe.getServer().getPlayerManager().getPlayerList().forEach((pl)->{
-                                    pl.sendMessage(Tx.ttf(Formatting.GOLD,Text.translatable("promotion.fired", pl.getName())));
+                                    pl.sendMessage(Tx.ttf(Formatting.GOLD,Text.translatable("promotion.fired", target.getName())));
                                 });
                                 player.closeHandledScreen();
                             }
