@@ -34,6 +34,7 @@ public class MapsMicroUI extends MicroUi {
                     Profile prof = Profile.getProfile(spe);
                     if (prof.getMoney() >= a.price) {
                         cooldown = 20*128;
+                        prof.setMoney(prof.getMoney()-a.price);
                         aa.getInventory().armor.set(3, Profile.getProfile(aa).helmetItem);
                         PrisonGameFabric.setActive(a, aa.getServer());
                         aa.closeHandledScreen();

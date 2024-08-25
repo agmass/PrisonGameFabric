@@ -128,6 +128,12 @@ public class Commands {
                     return 1;
                 }
         ))));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("discord").executes(
+                (context)->{
+                    context.getSource().sendMessage(Tx.ttf(Formatting.BLUE,Tx.link("https://discord.gg/vTsYMte327", "Click here to join the discord server! [https://discord.gg/vTsYMte327]")));
+                    return 1;
+                }
+        )));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("mods").executes(
                 (context)->{
                     context.getSource().sendError(Text.of("No, fabric doesn't have /mods either."));

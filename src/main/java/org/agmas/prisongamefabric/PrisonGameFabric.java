@@ -162,10 +162,10 @@ public class PrisonGameFabric implements ModInitializer {
             Profile.getProfile(serverPlayerEntity).teleportToSpawn();
         });
         active.upgrades.forEach((u)->{
-            if (!progress.upgrades.contains(availablePrisonUpgrades.get(u.upgrade))) {
-                u.lock(false);
-            } else {
+            if (progress.upgrades.contains(availablePrisonUpgrades.get(u.upgrade))) {
                 u.unlock(false);
+            } else {
+                u.lock(false);
             }
         });
     }

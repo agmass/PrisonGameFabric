@@ -1,5 +1,6 @@
 package org.agmas.prisongamefabric.util;
 
+import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -12,6 +13,10 @@ public class Tx {
     public static MutableText tf(Formatting f, String t) {
         return Text.literal(t).setStyle(Style.EMPTY.withFormatting(Formatting.RESET).withFormatting(f)).copy();
     }
+    public static MutableText link(String f, String t) {
+        return Text.literal(t).setStyle(Style.EMPTY.withFormatting(Formatting.RESET).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, f))).copy();
+    }
+
 
     public static MutableText ttf(Formatting f, MutableText t) {
         return t.setStyle(Style.EMPTY.withFormatting(Formatting.RESET).withFormatting(f)).copy();
