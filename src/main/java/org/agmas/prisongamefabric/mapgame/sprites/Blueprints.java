@@ -4,9 +4,12 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.mapgame.Sprite;
+import org.agmas.prisongamefabric.mapgame.image.Image;
+import org.agmas.prisongamefabric.mapgame.image.Template;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Blueprints extends Sprite {
 
@@ -17,81 +20,100 @@ public class Blueprints extends Sprite {
         super(parent);
         byte w = Blocks.WHITE_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
         byte b = Blocks.BLUE_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        prints.add(new Byte[][]{
-                {b,b,b,w,b,b,b,b,b,b,w,b,b,b,b,b},
-                {b,b,w,b,b,b,b,b,b,b,b,w,b,b,b,b},
-                {b,b,w,b,b,b,b,b,b,b,b,w,b,b,b,b},
-                {b,b,b,w,b,b,b,b,b,b,w,b,b,b,b,b},
-                {b,b,b,w,b,b,b,b,b,b,w,b,b,b,b,b},
-                {b,b,b,b,w,b,b,b,b,w,b,b,b,b,b,b},
-                {b,b,b,b,w,b,b,b,b,w,b,b,b,b,b,b},
-                {b,b,b,w,b,b,b,b,b,w,b,b,b,b,b,b},
-        });
-        prints.add(new Byte[][]{
-                {b,w,w,w,w,w,w,w,w,w,w,w,w,w,w,b},
-                {b,w,b,b,b,b,b,b,b,b,b,b,b,b,w,b},
-                {b,w,b,b,b,b,b,b,b,b,b,b,b,b,w,b},
-                {b,w,w,b,b,b,b,b,b,b,b,b,b,w,w,b},
-                {b,w,w,w,w,w,w,w,w,w,w,w,w,w,w,b},
-                {b,w,b,b,b,b,b,b,b,b,b,b,b,b,w,b},
-                {b,w,b,b,b,w,w,w,w,w,b,b,b,b,w,b},
-                {b,w,w,w,w,w,b,b,b,w,w,w,w,w,w,b},
-        });
-        prints.add(new Byte[][]{
-                {w,w,w,w,w,b,b,b,w,w,w,w,w,w,w,w},
-                {b,b,b,b,w,b,b,b,b,b,b,w,b,b,w,w},
-                {b,b,b,b,w,b,b,b,b,b,b,w,b,b,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,w,w,w,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w},
-                {b,b,b,b,w,b,b,b,b,b,b,w,b,b,b,w},
-                {b,b,b,b,w,w,w,w,w,w,w,w,b,b,b,w},
-                {b,b,b,b,w,b,b,b,b,b,w,w,w,b,b,w},
-        });
-        prints.add(new Byte[][]{
-                {b,b,b,b,b,w,w,b,b,w,w,b,b,b,b,b},
-                {b,b,b,b,w,b,b,b,b,b,b,w,b,b,b,b},
-                {w,w,w,w,w,b,b,b,b,b,b,w,w,w,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {w,w,w,w,w,b,b,b,b,b,b,w,w,w,w,w},
-                {b,b,b,b,w,b,b,b,b,b,b,w,b,b,b,b},
-                {b,b,b,b,b,w,w,b,b,w,w,b,b,b,b,b},
-        });
-        prints.add(new Byte[][]{
-                {w,w,b,w,b,b,b,w,b,b,w,b,b,b,b,b},
-                {w,b,b,w,b,b,b,w,b,b,w,b,b,b,b,b},
-                {w,w,b,w,w,b,w,w,b,w,w,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {w,w,b,w,w,b,w,w,w,b,w,b,b,b,b,b},
-                {w,b,b,w,b,b,b,w,b,b,w,b,b,b,b,b},
-                {w,b,b,w,b,b,b,w,b,b,w,b,b,b,b,b},
-        });
-        prints.add(new Byte[][]{
-                {b,b,b,w,b,b,b,w,b,b,b,b,b,b,b,b},
-                {w,w,w,w,b,b,b,w,w,w,w,w,w,w,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b},
-        });
-        prints.add(new Byte[][]{
-                {b,b,b,b,b,b,b,b,b,b,w,b,b,b,w,b},
-                {w,w,w,w,w,w,w,w,w,w,w,b,b,b,w,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w},
-                {b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,w},
-                {w,w,w,w,w,b,b,b,w,w,w,w,w,w,w,w},
-                {b,b,b,b,w,b,b,b,w,b,b,b,b,b,b,b},
-                {b,b,b,b,w,b,b,b,w,b,b,b,b,b,b,b},
-        });
+
+        List<String> templates = new ArrayList<>();
+
+        templates.add("""
+                bbbwbbbbbbwbbbbb
+                bbwbbbbbbbbwbbbb
+                bbwbbbbbbbbwbbbb
+                bbbwbbbbbbwbbbbb
+                bbbwbbbbbbwbbbbb
+                bbbbwbbbbwbbbbbb
+                bbbbwbbbbwbbbbbb
+                bbbwbbbbbwbbbbbb
+                """);
+
+        templates.add("""
+                bwwwwwwwwwwwwwb
+                bwbbbbbbbbbbbwb
+                bwbbbbbbbbbbbwb
+                bwwbbbbbbbbbwwb
+                bwwwwwwwwwwwwwb
+                bwbbbbbbbbbbbwb
+                bwbbbwwwwwbbbwb
+                bwwwwwbbbwwwwwb
+                """);
+
+        templates.add("""
+                wwwwbbbwwwwwwww
+                bbbwbbbbbbwbbww
+                bbbwbbbbbbwbbww
+                bbbbbbbbbbwwwww
+                bbbbbbbbbbbbbbw
+                bbbwbbbbbbwbbbw
+                bbbwwwwwwwwbbbw
+                bbbwbbbbbwwwbbw
+                """);
+
+        templates.add("""
+                bbbbwwbbwwbbbbb
+                bbbwbbbbbbwbbbb
+                wwwwbbbbbbwwwww
+                bbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbb
+                wwwwbbbbbbwwwww
+                bbbwbbbbbbwbbbb
+                bbbbwwbbwwbbbbb
+                """);
+
+        templates.add("""
+                wbwbbbwbbwbbbbb
+                wbwbbbwbbwbbbbb
+                wbwwbwwbwwbbbbb
+                bbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbb
+                wbwwbwwwbwbbbbb
+                wbwbbbwbbwbbbbb
+                wbwbbbwbbwbbbbb
+                """);
+
+        templates.add("""
+                bbwbbbwbbbbbbbb
+                wwwbbbwwwwwwwww
+                bbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbb
+                wwwwwwwwwwwwwww
+                bbbbbbbbbbbbbbb
+                bbbbbbbbbbbbbbb
+                """);
+
+        templates.add("""
+                bbbbbbbbbwbbbwb
+                wwwwwwwwwwbbbww
+                bbbbbbbbbbbbbbw
+                bbbbbbbbbbbbbbw
+                bbbbbbbbbbbbbbw
+                wwwwbbbwwwwwwww
+                bbbwbbbwbbbbbbb
+                bbbwbbbwbbbbbbb
+                """);
+
+        for (String template : templates) {
+            String[] lines = template.split(" ");
+
+            prints.add(new Image(lines[0].length(), lines.length)
+                    .applyTemplate(new Template(template)
+                            .put('b', b)
+                            .put('w', w))
+                    .bitmap);
+        }
+
         scaleToFit(prints.getFirst());
     }
 
     public void scaleToFit(Byte[][] a) {
-
         bitmap = new Byte[8*16][16*8];
         int yLevel = 0;
         for (Byte[] bytes : bitmap) {

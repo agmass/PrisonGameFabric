@@ -3,6 +3,7 @@ package org.agmas.prisongamefabric.mapgame.sprites.icons;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import org.agmas.prisongamefabric.mapgame.Scene;
+import org.agmas.prisongamefabric.mapgame.image.Image;
 import org.agmas.prisongamefabric.mapgame.microUis.MapsMicroUI;
 import org.agmas.prisongamefabric.mapgame.microUis.UpgradesMicroUI;
 
@@ -18,40 +19,12 @@ public class UpgradesIcon extends Icon {
         byte s = Blocks.LIGHT_BLUE_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.NORMAL);
         byte d = Blocks.BROWN_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.NORMAL);
         byte g = Blocks.GRASS_BLOCK.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        bitmap = new Byte[][]{
-                {n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n},
-                {n,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n},
-                {n,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,n},
-                {n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n},
-                {w,w,w,w,w,w,w,w,w,w,w,w,n,w,w,w,w,w,w,w,w,w,w,w,n,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w},
-                {w,b,b,w,b,b,w,b,b,b,b,w,w,w,b,b,b,w,w,b,b,b,b,w,w,w,b,b,b,w,w,b,b,b,b,w,w,b,b,b,b,b,w,w,b,b,b,w},
-                {w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,w,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,w,w,b,b,w,w,w},
-                {w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,w,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,b,b,w,w,b,b,w,w,n},
-                {w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,w,w,w,w,w,w,b,b,w,w},
-                {w,b,b,w,b,b,w,b,b,b,b,b,w,b,b,w,b,b,w,b,b,b,b,w,w,b,b,b,b,b,w,b,b,w,b,b,w,b,w,n,n,n,w,w,w,b,b,w},
-                {w,b,b,w,b,b,w,b,b,w,w,w,w,b,b,w,b,b,w,b,b,w,b,w,w,b,b,w,b,b,w,b,b,w,b,b,w,b,w,w,w,w,w,w,w,b,b,w},
-                {w,w,b,b,b,w,w,b,b,w,w,w,w,w,b,b,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,b,b,w,w,b,b,b,b,b,w,b,b,b,w,w},
-                {n,w,w,w,w,w,w,w,w,w,n,n,n,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,n},
-        };
+
+        bitmap = new Image(width, height)
+                .fillRectangle(1, 1, width - 1, height - 11, b)
+                .fillRectangle(2, 2, width - 2, height - 12, s)
+                .drawText(0, height - 9, "UPGRADES")
+                .bitmap;
     }
 
     @Override
