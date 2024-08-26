@@ -5,14 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockPredicatesChecker;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.predicate.BlockPredicate;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.agmas.prisongamefabric.util.Profile;
@@ -21,10 +19,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 
-public class LumberjackAxe extends Item implements PolymerItem, MiningItem {
+public class LumberjackAxe extends AxeItem implements PolymerItem, MiningItem {
     public LumberjackAxe(Settings settings) {
-        super(settings);
+        super(ToolMaterials.WOOD,settings);
 
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        return ActionResult.PASS;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class LumberjackAxe extends Item implements PolymerItem, MiningItem {
     public void onMine(PlayerEntity p, BlockState b, World w, BlockPos pos) {
 
         Profile profile = Profile.getProfile(p);
-        profile.addMoney(10,true);
+        profile.addMoney(10 * MiningItem.jobModifiers(),true);
         MiningItem.super.onMine(p,b,w,pos);
     }
 

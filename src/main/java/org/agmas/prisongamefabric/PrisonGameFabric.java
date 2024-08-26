@@ -1,6 +1,8 @@
 package org.agmas.prisongamefabric;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.ArgumentTypeRegistry;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -40,6 +42,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 import org.agmas.prisongamefabric.commands.Commands;
+import org.agmas.prisongamefabric.discord.Discord;
 import org.agmas.prisongamefabric.items.Keycard;
 import org.agmas.prisongamefabric.prisons.Prison;
 import org.agmas.prisongamefabric.prisons.ResourceListener;
@@ -54,6 +57,7 @@ import org.agmas.prisongamefabric.util.Roles.Role;
 import org.agmas.prisongamefabric.util.Schedule;
 import org.agmas.prisongamefabric.util.Tx;
 import org.agmas.prisongamefabric.util.WardenProgress;
+import org.agmas.prisongamefabric.util.config.ModConfigs;
 
 import java.util.*;
 
@@ -81,6 +85,7 @@ public class PrisonGameFabric implements ModInitializer {
     @Override
     public void onInitialize() {
 
+        ModConfigs.registerConfigs();
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ResourceListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new UpgradesListener());
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ShopsListener());
@@ -110,7 +115,10 @@ public class PrisonGameFabric implements ModInitializer {
             me.add(PrisonGameBlocks.FOODCHEST);
         });
 
+
         Schedule.createSchedule();
+        //Discord.init();
+
         ServerLifecycleEvents.SERVER_STARTED.register((a)->
         {
             serverInstance = a;

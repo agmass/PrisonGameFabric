@@ -5,14 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockPredicatesChecker;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.predicate.BlockPredicate;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.agmas.prisongamefabric.PrisonGameBlocks;
@@ -23,14 +21,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ShovellingShovel extends Item implements PolymerItem, MiningItem {
+public class ShovellingShovel extends ShovelItem implements PolymerItem, MiningItem {
 
     ArrayList<BlockPredicate> breakables = new ArrayList<>();
     public ShovellingShovel(Settings settings) {
-        super(settings);
+        super(ToolMaterials.STONE,settings);
         breakables.add(BlockPredicate.Builder.create().blocks(PrisonGameBlocks.POOPBLOCK).build());
         breakables.add(BlockPredicate.Builder.create().blocks(Blocks.COARSE_DIRT).build());
 
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        return ActionResult.PASS;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class ShovellingShovel extends Item implements PolymerItem, MiningItem {
     public void onMine(PlayerEntity p, BlockState b, World w, BlockPos pos) {
 
         Profile profile = Profile.getProfile(p);
-        profile.addMoney(4,true);
+        profile.addMoney(4 * MiningItem.jobModifiers(),true);
         MiningItem.super.onMine(p,b,w,pos);
     }
 

@@ -10,7 +10,7 @@ public class Sprite {
     public boolean dither = false;
     public Scene parent;
 
-    public Sprite(Scene                                                                            parent) {
+    public Sprite(Scene parent) {
         this.parent = parent;
     }
 

@@ -20,7 +20,9 @@ public class Schedule {
         entries.add(new ScheduleEntry(60, "rollcall", 0, 1000, true,true));
         entries.add(new ScheduleEntry(60, "breakfast", 1000, 2000, true));
         entries.add(new ScheduleEntry(100, "freetime", 2000, 4000, true));
-        entries.add(new ScheduleEntry(140, "jobtime", 4000, 11000, true));
+        ScheduleEntry jobTime = new ScheduleEntry(140, "jobtime", 4000, 11000, true);
+        jobTime.specialProperties.add("doubleMoney");
+        entries.add(jobTime);
         entries.add(new ScheduleEntry(60, "eveningrollcall", 11000, 13000, true));
         entries.add(new ScheduleEntry(60, "celltime", 13000, 14000, true));
         ScheduleEntry lockDown = new ScheduleEntry(80, "lockdown", 14000, 23999, true);
