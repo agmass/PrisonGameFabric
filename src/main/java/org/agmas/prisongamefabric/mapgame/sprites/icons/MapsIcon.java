@@ -9,6 +9,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.network.packet.s2c.play.InventoryS2CPacket;
 import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.mapgame.Sprite;
+import org.agmas.prisongamefabric.mapgame.image.Image;
 import org.agmas.prisongamefabric.mapgame.microUis.MapsMicroUI;
 
 public class MapsIcon extends Icon {
@@ -23,39 +24,14 @@ public class MapsIcon extends Icon {
         byte s = Blocks.BLUE_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.NORMAL);
         byte d = Blocks.BROWN_CONCRETE.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.NORMAL);
         byte g = Blocks.GRASS_BLOCK.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        bitmap = new Byte[][]{
-                {n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n},
-                {n,n,n,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,n,n,n},
-                {n,n,n,b,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,b,n,n,n},
-                {n,n,n,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,n,n,n},
-                {n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n},
-                {n,n,n,w,w,w,n,n,n,w,w,w,w,w,w,w,w,w,w,w,w,w,w,n,w,w,w,w,w,n,n,n},
-                {n,n,n,w,b,w,w,n,w,w,b,w,w,b,b,b,w,w,b,b,b,b,w,w,w,b,b,b,w,n,n,n},
-                {n,n,n,w,b,b,w,w,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,w,n,n,n},
-                {n,n,n,w,b,b,b,w,b,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,n,n,n,n},
-                {n,n,n,w,b,b,b,b,b,b,b,w,b,b,w,b,b,w,b,b,w,b,b,w,w,b,b,w,w,n,n,n},
-                {n,n,n,w,b,b,w,b,w,b,b,w,b,b,b,b,b,w,b,b,b,b,w,w,w,w,b,b,w,n,n,n},
-                {n,n,n,w,b,b,w,w,w,b,b,w,b,b,w,b,b,w,b,b,w,w,w,w,w,w,b,b,w,n,n,n},
-                {n,n,n,w,b,b,w,n,w,b,b,w,b,b,w,b,b,w,b,b,w,n,n,w,b,b,b,w,w,n,n,n},
-                {n,n,n,w,w,w,w,n,w,w,w,w,w,w,w,w,w,w,w,w,w,n,n,w,w,w,w,w,w,n,n,n}
-        };
+
+        bitmap = new Image(width, height)
+                .fillRectangle(3, 1, width - 3, height - 12, b)
+                .fillRectangle(4, 2, width - 4, height - 13, s)
+                .fillRectangle(4, 13, width - 4, height - 13, g)
+                .fillRectangle(4, 14, width - 4, height - 13, d)
+                .drawText(3, width - 10, "MAPS")
+                .bitmap;
     }
 
     @Override

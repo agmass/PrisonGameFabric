@@ -4,6 +4,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import org.agmas.prisongamefabric.mapgame.Scene;
 import org.agmas.prisongamefabric.mapgame.Sprite;
+import org.agmas.prisongamefabric.mapgame.image.Image;
+import org.agmas.prisongamefabric.mapgame.image.Template;
 
 public class WardenBootup extends Sprite {
 
@@ -13,37 +15,32 @@ public class WardenBootup extends Sprite {
         height = 24;
         byte n = -1;
         byte border = Blocks.NETHERRACK.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.NORMAL);
-        byte s = Blocks.RED_WOOL.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        byte B = Blocks.CRIMSON_NYLIUM.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
+        byte shadow2 = Blocks.RED_WOOL.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
+        byte background = Blocks.CRIMSON_NYLIUM.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
 
-        byte F = Blocks.SNOW.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        byte S = Blocks.WHITE_TERRACOTTA.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
-        bitmap = new Byte[][]{
-                {n,n,n,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,border,n,n,n},
-                {n,n,border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border,n,n},
-                {n,border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border,n},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, B, B, B, B, B,S,F,F,F, B, B, B, B, B,F,F,F, B, B, B, B, B,border},
-                {border, B, B, B, B, B,S,F,F,F, B, B, B, B, B,F,F,F, B, B, B, B, B,border},
-                {border, B, B, B, B, B,S,F,F,F, B, B,F, B, B,F,F,F, B, B, B, B, B,border},
-                {border, B, B, B, B, B,S,F,F,F, B, B,F, B, B,F,F,F, B, B, B, B, B,border},
-                {border, B, B, B, B, B,S,F,F,F, B, B,F, B, B,F,F,F, B, B, B, B, B,border},
-                {border, B, B, B, B, B,B, B, B, S, F, F,F, F, F,F,B,B, B, B, B, B, B,border},
-                {border, B, B, B, B, B,B, B, B, S, F, F,F, F, F,F,B,B, B, B, B, B, B,border},
-                {border, B, B, B, B, B,B, B, B, S, F, F,S, F, F,F,B,B, B, B, B, B, B,border},
-                {border, B, B, B, B, B,B, B, B, B, S, S,B, S, S,S,B,B, B, B, B, B, B,border},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B, B,border},
-                {border, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s,border},
-                {border, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s,border},
-                {border, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s,border},
-                {n,border, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s,border,n},
-                {n,n, border, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, s, border,n,n},
-                {n,n, n, border, border, border, border, border, border, border, border, border, border, border, border, border, border, border, border, border, border, n,n,n},
-        };
+        byte foreground = Blocks.SNOW.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
+        byte shadow = Blocks.WHITE_TERRACOTTA.getDefaultMapColor().getRenderColorByte(MapColor.Brightness.HIGH);
+
+        String template = """
+                sfff00000fff
+                sfff00000fff
+                sfff00f00fff
+                sfff00f00fff
+                sfff00f00fff
+                000sffffff00
+                000sffffff00
+                000sffsfff00
+                0000ss0sss00
+                """;
+
+        bitmap = new Image(width, height)
+                .drawBorderRadius(0, 0, width - 1, height - 1, 3, border)
+                .fillInsideBorder(0, 0, width - 1, height - 1, 3, background)
+                .fillInsideBorder(0, 17, width - 1, height - 1, 3, shadow2, 1)
+                .applyTemplate(6, 7, new Template(template)
+                        .put('s', shadow)
+                        .put('f', foreground))
+                .bitmap;
     }
 
     @Override
